@@ -10,979 +10,9 @@ var isPanning = false,
 var importedHeaders = [],
   importedRows = [];
 
-// Data — loaded from index.html's baked-in data, can be overridden by CSV import
-var FINAL_MAP = {
-  1: {
-    entries: [
-      { name: "Anshika Bagla", project: "M-Ocean-Less", space_raw: "1 + 2" },
-    ],
-    zone: "Amphitheater",
-    label: "1",
-  },
-  2: {
-    entries: [
-      { name: "Anshika Bagla", project: "M-Ocean-Less", space_raw: "1 + 2" },
-    ],
-    zone: "Amphitheater",
-    label: "2",
-  },
-  3: {
-    entries: [
-      {
-        name: "Ash Ryan Arnwine",
-        project: "Rock With You; Collxn Pulse",
-        space_raw: "3 + 4",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "3",
-  },
-  4: {
-    entries: [
-      {
-        name: "Ash Ryan Arnwine",
-        project: "Rock With You; Collxn Pulse",
-        space_raw: "3 + 4",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "4",
-  },
-  5: {
-    entries: [
-      {
-        name: "Logan Williams",
-        project: "More Hats About Buildings and Food",
-        space_raw: "5 + 6",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "5",
-  },
-  6: {
-    entries: [
-      {
-        name: "Logan Williams",
-        project: "More Hats About Buildings and Food",
-        space_raw: "5 + 6",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "6",
-  },
-  7: {
-    entries: [
-      {
-        name: "Steven Keyes",
-        project: "Pericon, Patience / Impatience",
-        space_raw: "7 + 8",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "7",
-  },
-  8: {
-    entries: [
-      {
-        name: "Steven Keyes",
-        project: "Pericon, Patience / Impatience",
-        space_raw: "7 + 8",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "8",
-  },
-  9: {
-    entries: [{ name: "Julia Chun", project: "Woodwork!", space_raw: "9" }],
-    zone: "Amphitheater",
-    label: "9",
-  },
-  10: {
-    entries: [{ name: "Erica Du", project: "birdfeeder", space_raw: "10" }],
-    zone: "Amphitheater",
-    label: "10",
-  },
-  11: {
-    entries: [
-      {
-        name: "GRACE CAMPIDILLI",
-        project: "ORGANIC, CURVED AND POINTY",
-        space_raw: "11",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "11",
-  },
-  12: {
-    entries: [{ name: "Hillary Leung", project: "shades", space_raw: "12" }],
-    zone: "Amphitheater",
-    label: "12",
-  },
-  13: {
-    entries: [
-      { name: "Taylor Tyson", project: "deconstructed furby", space_raw: "13" },
-    ],
-    zone: "Amphitheater",
-    label: "13",
-  },
-  14: {
-    entries: [
-      { name: "Yonatan Rozin", project: "P5 OSC Bridge", space_raw: "14" },
-    ],
-    zone: "Amphitheater",
-    label: "14",
-  },
-  15: {
-    entries: [
-      { name: "Kiane Efondo", project: "Cybrholic", space_raw: "15 + 16" },
-    ],
-    zone: "Amphitheater",
-    label: "15",
-  },
-  16: {
-    entries: [
-      { name: "Kiane Efondo", project: "Cybrholic", space_raw: "15 + 16" },
-    ],
-    zone: "Amphitheater",
-    label: "16",
-  },
-  17: {
-    entries: [
-      {
-        name: "Cameron Alexander",
-        project: "Various Projects",
-        space_raw: "17 + 18",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "17",
-  },
-  18: {
-    entries: [
-      {
-        name: "Cameron Alexander",
-        project: "Various Projects",
-        space_raw: "17 + 18",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "18",
-  },
-  19: {
-    entries: [
-      {
-        name: "Noah Eisenbruch",
-        project: "1) Artifacts 2) How to Unfold an Envelope",
-        space_raw: "19 + 20",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "19",
-  },
-  20: {
-    entries: [
-      {
-        name: "Noah Eisenbruch",
-        project: "1) Artifacts 2) How to Unfold an Envelope",
-        space_raw: "19 + 20",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "20",
-  },
-  21: {
-    entries: [
-      {
-        name: "Hakan Alpay",
-        project: "Two players one keyboard",
-        space_raw: "21 - 22",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "21",
-  },
-  22: {
-    entries: [
-      {
-        name: "Hakan Alpay",
-        project: "Two players one keyboard",
-        space_raw: "21 - 22",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "22",
-  },
-  23: {
-    entries: [{ name: "Szeyin Lee", project: "A Shy Flower", space_raw: "23" }],
-    zone: "Amphitheater",
-    label: "23",
-  },
-  24: {
-    entries: [
-      {
-        name: "Jade Majed BuGhanem",
-        project: "Naqsha, Velomind",
-        space_raw: "24",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "24",
-  },
-  25: {
-    entries: [
-      {
-        name: "Vas Kottas",
-        project: "Checker Checker (analog game/digital assistant)",
-        space_raw: "25 & 26",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "25",
-  },
-  26: {
-    entries: [
-      {
-        name: "Vas Kottas",
-        project: "Checker Checker (analog game/digital assistant)",
-        space_raw: "25 & 26",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "26",
-  },
-  27: {
-    entries: [
-      { name: "Shy Ruparel", project: "Crane machine", space_raw: "27" },
-    ],
-    zone: "Amphitheater",
-    label: "27",
-  },
-  28: {
-    entries: [{ name: "Cyrene Zhang", project: "stickers!", space_raw: "28" }],
-    zone: "Amphitheater",
-    label: "28",
-  },
-  29: {
-    entries: [
-      { name: "Lauria", project: "Painting Brooklyn", space_raw: "29" },
-    ],
-    zone: "Amphitheater",
-    label: "29",
-  },
-  30: {
-    entries: [
-      { name: "Undarmaa Tserenkhuu", project: "Minibuilding", space_raw: "30" },
-    ],
-    zone: "Amphitheater",
-    label: "30",
-  },
-  31: {
-    entries: [
-      {
-        name: "Eve Shi",
-        project: "The Unfixed Face \u2014 a collage oracle system",
-        space_raw: "31 + 32",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "31",
-  },
-  32: {
-    entries: [
-      {
-        name: "Eve Shi",
-        project: "The Unfixed Face \u2014 a collage oracle system",
-        space_raw: "31 + 32",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "32",
-  },
-  53: {
-    entries: [
-      { name: "Avi Bagla", project: "Type to Pay", space_raw: "53 & 54" },
-    ],
-    zone: "Craft Corner",
-    label: "53",
-  },
-  54: {
-    entries: [
-      { name: "Avi Bagla", project: "Type to Pay", space_raw: "53 & 54" },
-    ],
-    zone: "Craft Corner",
-    label: "54",
-  },
-  55: {
-    entries: [
-      {
-        name: "Nicole Dubin",
-        project: "An Exploration of Punchcard Machine Knitting",
-        space_raw: "55 & 56",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "55",
-  },
-  56: {
-    entries: [
-      {
-        name: "Nicole Dubin",
-        project: "An Exploration of Punchcard Machine Knitting",
-        space_raw: "55 & 56",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "56",
-  },
-  61: {
-    entries: [
-      {
-        name: "Jeanette Andrews",
-        project: "beep boop blue orbs",
-        space_raw: "61",
-      },
-    ],
-    zone: "North Lodge",
-    label: "61",
-  },
-  62: {
-    entries: [
-      {
-        name: "Anah Lewi",
-        project: "Affirmations and A Flower Doesn't Bloom Overnight",
-        space_raw: "62",
-      },
-    ],
-    zone: "North Lodge",
-    label: "62",
-  },
-  64: {
-    entries: [
-      {
-        name: "Ciri Stowell",
-        project: "A Century Within These Walls",
-        space_raw: "64",
-      },
-    ],
-    zone: "North Lodge",
-    label: "64",
-  },
-  65: {
-    entries: [{ name: "Munro Wyman", project: "Libryinth", space_raw: "65" }],
-    zone: "North Lodge",
-    label: "65",
-  },
-  123: {
-    entries: [
-      { name: "Tala Schlossberg", project: "Remix", space_raw: "123 CABIN 1" },
-    ],
-    zone: "Cabin 1",
-    label: "123",
-  },
-  68: {
-    entries: [
-      {
-        name: "Mike Lucero",
-        project: "Citibike Commute Challenge",
-        space_raw: "68",
-      },
-    ],
-    zone: "Amphitheater",
-    label: "68",
-  },
-  66: {
-    entries: [
-      {
-        name: "Neel Dhanesha",
-        project: "Ticker Tape Tee-off",
-        space_raw: "66",
-      },
-      {
-        name: "Saba Ghazi (point person), Andri Kumar, Akbar Mirza, Isra Ameen",
-        project: "Puppet Theater (title tbd)",
-        space_raw: "66",
-      },
-    ],
-    zone: "North Lodge",
-    label: "66",
-    sub_labels: ["66.1", "66.2"],
-  },
-  71: {
-    entries: [
-      {
-        name: "Issac Alfaro",
-        project: "Interactive Gallery with ML5js and P5-Phone",
-        space_raw: "71",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "71",
-  },
-  72: {
-    entries: [{ name: "Zachary Roney", project: "Origo", space_raw: "72" }],
-    zone: "Soft Lab",
-    label: "72",
-  },
-  73: {
-    entries: [
-      {
-        name: "G Malin",
-        project: "New Soft Skills (and tiny zines)",
-        space_raw: "73",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "73",
-  },
-  74: {
-    entries: [
-      {
-        name: "Lily Crandall",
-        project: "Objects Against Screen Time",
-        space_raw: "74",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "74",
-  },
-  75: {
-    entries: [
-      {
-        name: "Brandon Liu",
-        project: "Ambient Map Gadget + soft stuff",
-        space_raw: "75",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "75",
-  },
-  76: {
-    entries: [
-      {
-        name: "Rob Faludi",
-        project: "Indoor Rust Garden, Earthquake Lamp",
-        space_raw: "76",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "76",
-  },
-  77: {
-    entries: [{ name: "judy", project: "You Be The Judge", space_raw: "77" }],
-    zone: "Soft Lab",
-    label: "77",
-  },
-  78: {
-    entries: [{ name: "Shiva", project: "Everydays", space_raw: "78" }],
-    zone: "Soft Lab",
-    label: "78",
-  },
-  79: {
-    entries: [
-      {
-        name: "Willem Yarbrough",
-        project: '"Ambient 101" and "Piezochimes v2"',
-        space_raw: "79",
-      },
-    ],
-    zone: "Soft Lab",
-    label: "79",
-  },
-  124: {
-    entries: [
-      {
-        name: "Jill Cohen",
-        project: "Dance, Dance, Dance",
-        space_raw: "124 CABIN 2",
-      },
-    ],
-    zone: "Cabin 2",
-    label: "124",
-  },
-  63: {
-    entries: [
-      {
-        name: "Saba Ghazi (point person) isra ameen and 30 attendees from our Sculpting the Sanctuary Session - we\u2019ll display their names",
-        project: "Sanctuary",
-        space_raw: "63? Phone Booth in North Lodge",
-      },
-      {
-        name: "Isra (point person) and Saba",
-        project: "Sari Project (no title yet)",
-        space_raw: "63 North Lodge",
-      },
-      {
-        name: "Point Person: Shubha Jagannatha, Neel Dhanesha",
-        project: "Tiny Tunes",
-        space_raw: "63",
-      },
-    ],
-    zone: "North Lodge",
-    label: "63",
-    sub_labels: ["63.1", "63.2", "63.3"],
-  },
-  85: {
-    entries: [
-      {
-        name: "Hank Duhaime",
-        project: "REGNB\u00c5GE, Bugs! Bugs! Bugs!",
-        space_raw: "85",
-      },
-    ],
-    zone: "South Lodge",
-    label: "85",
-  },
-  86: {
-    entries: [
-      { name: "jiadai he", project: "sounds you see", space_raw: "86" },
-    ],
-    zone: "South Lodge",
-    label: "86",
-  },
-  87: {
-    entries: [
-      { name: "Zea Zhao", project: "Manhattan is an island", space_raw: "87" },
-    ],
-    zone: "South Lodge",
-    label: "87",
-  },
-  88: {
-    entries: [
-      { name: "Voyo Woo", project: "An Eulogy to Earth", space_raw: "88" },
-    ],
-    zone: "South Lodge",
-    label: "88",
-  },
-  89: {
-    entries: [{ name: "Jacky Dang", project: "Frame Jockey", space_raw: "89" }],
-    zone: "South Lodge",
-    label: "89",
-  },
-  90: {
-    entries: [{ name: "Silka", project: "Rocks", space_raw: "90" }],
-    zone: "South Lodge",
-    label: "90",
-  },
-  91: {
-    entries: [{ name: "Isra", project: "Parallels", space_raw: "91" }],
-    zone: "South Lodge",
-    label: "91",
-  },
-  96: {
-    entries: [
-      {
-        name: "Sam Keene",
-        project: "Generative Drum Circle",
-        space_raw: "96 & 97",
-      },
-    ],
-    zone: "South Lodge",
-    label: "96",
-  },
-  97: {
-    entries: [
-      {
-        name: "Sam Keene",
-        project: "Generative Drum Circle",
-        space_raw: "96 & 97",
-      },
-    ],
-    zone: "South Lodge",
-    label: "97",
-  },
-  117: {
-    entries: [
-      {
-        name: "Pranika",
-        project: "One Thing One Day Exhibit",
-        space_raw: "117",
-      },
-    ],
-    zone: "South Lodge",
-    label: "117",
-  },
-  118: {
-    entries: [
-      {
-        name: "Ada Zhang",
-        project: "1/Jialing 2/Blood and flesh GPT",
-        space_raw: "118",
-      },
-    ],
-    zone: "South Lodge",
-    label: "118",
-  },
-  119: {
-    entries: [
-      { name: "Connie Liu", project: "word and image", space_raw: "119" },
-    ],
-    zone: "South Lodge",
-    label: "119",
-  },
-  81: {
-    entries: [
-      {
-        name: "Luna(Yuxin) Chen",
-        project: "Echoes of the Gallop",
-        space_raw: "81",
-      },
-    ],
-    zone: "Phone Booth",
-    label: "81",
-  },
-  82: {
-    entries: [{ name: "Lila Yedidia", project: "Water", space_raw: "82" }],
-    zone: "Phone Booth",
-    label: "82",
-  },
-  83: {
-    entries: [
-      {
-        name: "Meguna",
-        project: "Tbd, i\u2019m going to name it by monday.",
-        space_raw: "83",
-      },
-    ],
-    zone: "Phone Booth",
-    label: "83",
-  },
-  58: {
-    entries: [
-      {
-        name: "(N/A)",
-        project: "Tracing Stories and Emotions in a Digital Gallery",
-        space_raw: "58",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "58",
-  },
-  40: {
-    entries: [
-      {
-        name: "Alejandro Mora",
-        project: "LeKiwi: Low Cost Mobile Manipulator",
-        space_raw: "40",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "40",
-  },
-  37: {
-    entries: [
-      {
-        name: "Andrea Fehrman",
-        project: "Through the window",
-        space_raw: "37",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "37",
-  },
-  109: {
-    entries: [
-      {
-        name: "Andrew Lott",
-        project: "Cookie of Infinite Fortune",
-        space_raw: "109",
-      },
-    ],
-    zone: "South Lodge",
-    label: "109",
-  },
-  33: {
-    entries: [
-      { name: "Ben Anderman", project: "Spork-8 CPU", space_raw: "33 + 34" },
-    ],
-    zone: "Craft Corner",
-    label: "33",
-  },
-  34: {
-    entries: [
-      { name: "Ben Anderman", project: "Spork-8 CPU", space_raw: "33 + 34" },
-    ],
-    zone: "Craft Corner",
-    label: "34",
-  },
-  43: {
-    entries: [
-      { name: "Danny Sulit", project: "Clock It!", space_raw: "43 + 44" },
-    ],
-    zone: "Craft Corner",
-    label: "43",
-  },
-  44: {
-    entries: [
-      { name: "Danny Sulit", project: "Clock It!", space_raw: "43 + 44" },
-    ],
-    zone: "Craft Corner",
-    label: "44",
-  },
-  102: {
-    entries: [
-      {
-        name: "David Stein",
-        project: "Soundscape of Salvaged Parts",
-        space_raw: "102",
-      },
-    ],
-    zone: "South Lodge",
-    label: "102",
-  },
-  103: {
-    entries: [
-      {
-        name: "David Wallin",
-        project: "Seahorse Puppet, Spring Factory, Fairy Home Terrarium",
-        space_raw: "103",
-      },
-    ],
-    zone: "South Lodge",
-    label: "103",
-  },
-  108: {
-    entries: [
-      { name: "Deron Gopie", project: "The Social Hour", space_raw: "108" },
-    ],
-    zone: "South Lodge",
-    label: "108",
-  },
-  70: {
-    entries: [
-      { name: "Frank Cheng", project: "You are a whale", space_raw: "70" },
-    ],
-    zone: "Amphitheater",
-    label: "70",
-  },
-  111: {
-    entries: [
-      { name: "Jaclyn McKay", project: "Super Bloom", space_raw: "111" },
-    ],
-    zone: "South Lodge",
-    label: "111",
-  },
-  94: {
-    entries: [
-      {
-        name: "Kevin Stirnweis",
-        project: "1) Notice Me 2) Waves 3) Ceramic TV",
-        space_raw: "94 + 95",
-      },
-    ],
-    zone: "South Lodge",
-    label: "94",
-  },
-  95: {
-    entries: [
-      {
-        name: "Kevin Stirnweis",
-        project: "1) Notice Me 2) Waves 3) Ceramic TV",
-        space_raw: "94 + 95",
-      },
-    ],
-    zone: "South Lodge",
-    label: "95",
-  },
-  104: {
-    entries: [
-      {
-        name: "Logan Gittelson (with support from Basia and Cyrene)",
-        project: "Knight Fishing",
-        space_raw: "104",
-      },
-    ],
-    zone: "South Lodge",
-    label: "104",
-  },
-  92: {
-    entries: [
-      {
-        name: "Matthew Yacavone (point person), Sasha Solovyeva",
-        project: "Choir of Angels (Rat)",
-        space_raw: "92",
-      },
-    ],
-    zone: "South Lodge",
-    label: "92",
-  },
-  105: {
-    entries: [
-      {
-        name: "Meghna Dholakia",
-        project: "Moving Mechanisms",
-        space_raw: "105",
-      },
-    ],
-    zone: "South Lodge",
-    label: "105",
-  },
-  106: {
-    entries: [
-      { name: "Meredith Clarke", project: "Lag: The Game", space_raw: "106" },
-    ],
-    zone: "South Lodge",
-    label: "106",
-  },
-  113: {
-    entries: [
-      { name: "Molly Boerner", project: "Music Man", space_raw: "113" },
-    ],
-    zone: "South Lodge",
-    label: "113",
-  },
-  107: {
-    entries: [
-      {
-        name: "Molly Boerner, Matt Yacavone",
-        project: "Record Player Music Box",
-        space_raw: "107",
-      },
-    ],
-    zone: "South Lodge",
-    label: "107",
-  },
-  80: {
-    entries: [
-      { name: "Daoxin Chen", project: "Ripple touch", space_raw: "80" },
-    ],
-    zone: "Phone Booth",
-    label: "80",
-  },
-  112: {
-    entries: [
-      { name: "One person", project: "Collision Box", space_raw: "112" },
-    ],
-    zone: "South Lodge",
-    label: "112",
-  },
-  120: {
-    entries: [
-      {
-        name: "Rebecca Odes",
-        project: "investigation of luminous e/motion",
-        space_raw: "120 CABIN 1",
-      },
-    ],
-    zone: "Cabin 1",
-    label: "120",
-  },
-  38: {
-    entries: [
-      {
-        name: "Richie Mendelsohn",
-        project: "Hello these are my projects",
-        space_raw: "38",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "38",
-  },
-  93: {
-    entries: [
-      {
-        name: "Richie Mendelsohn (Point person), Molly Boerner, Matt Yacavone",
-        project: "\u2615\ufe0f Do you like it around here?\ud83e\udd5b",
-        space_raw: "93",
-      },
-    ],
-    zone: "South Lodge",
-    label: "93",
-  },
-  100: {
-    entries: [
-      { name: "Rina Chen, 1", project: "textile things", space_raw: "100" },
-    ],
-    zone: "South Lodge",
-    label: "100",
-  },
-  110: {
-    entries: [
-      {
-        name: "sarah gray",
-        project: "5x5 Cube + Altar of My   Disappointments + Camp Sketchbook",
-        space_raw: "110",
-      },
-    ],
-    zone: "South Lodge",
-    label: "110",
-  },
-  35: {
-    entries: [
-      {
-        name: "Sea Won Kim (Point person)\nChristine Chang",
-        project: "d",
-        space_raw: "35 + 36",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "35",
-  },
-  36: {
-    entries: [
-      {
-        name: "Sea Won Kim (Point person)\nChristine Chang",
-        project: "d",
-        space_raw: "35 + 36",
-      },
-    ],
-    zone: "Craft Corner",
-    label: "36",
-  },
-  84: {
-    entries: [
-      { name: "Sophia Diggs-Galligan", project: "Intercom", space_raw: "84" },
-    ],
-    zone: "South Lodge",
-    label: "84",
-  },
-  116: {
-    entries: [
-      {
-        name: "Zach Gawlik",
-        project: "OPTIMIZED FOR ENGAGEMENT",
-        space_raw: "116",
-      },
-    ],
-    zone: "South Lodge",
-    label: "116",
-  },
-  41: {
-    entries: [
-      { name: "Zachary Roney", project: "Origo", space_raw: "41 + 42" },
-    ],
-    zone: "Craft Corner",
-    label: "41",
-  },
-  42: {
-    entries: [
-      { name: "Zachary Roney", project: "Origo", space_raw: "41 + 42" },
-    ],
-    zone: "Craft Corner",
-    label: "42",
-  },
-  121: {
-    entries: [
-      {
-        name: "Andri Kumar",
-        project: "Nayika (The One Who Longs)",
-        space_raw: "Cabin 1 - 121",
-      },
-    ],
-    zone: "Cabin 1",
-    label: "121",
-  },
-  122: {
-    entries: [
-      {
-        name: "Valentine Ye",
-        project: "AI Cyberdeck",
-        space_raw: "Cabin 1 - 122",
-      },
-    ],
-    zone: "Cabin 1",
-    label: "122",
-  },
-};
+// Data — loaded from KV via loadFromKV(), seeded from data.json if empty
+var FINAL_MAP = {};
+
 var SPOTS = [
   { id: 1, x: 277, y: 58 },
   { id: 2, x: 312, y: 58 },
@@ -1270,7 +300,6 @@ function getSpotStatus(id) {
   var data = FINAL_MAP[String(id)];
   if (!data) return "available";
   if (data.entries.length > 1) {
-    // Check if truly different people
     var names = data.entries.map(function (e) {
       return e.name;
     });
@@ -1294,7 +323,6 @@ function buildSpots() {
   var d = imgDims(),
     sx = d.w / IMG_W,
     sy = d.h / IMG_H;
-
   SPOTS.forEach(function (s) {
     var status = getSpotStatus(s.id);
     var el = document.createElement("div");
@@ -1312,7 +340,6 @@ function buildSpots() {
     });
     layer.appendChild(el);
   });
-
   updateStats();
   renderSidebar();
 }
@@ -1357,7 +384,6 @@ function showTooltip(e, id) {
   var data = FINAL_MAP[String(id)];
   var zone = ZONE_MAP[id] || "Other";
   tip.innerHTML = "";
-
   var idEl = document.createElement("div");
   idEl.className = "tt-id";
   idEl.textContent = "#" + id;
@@ -1366,7 +392,6 @@ function showTooltip(e, id) {
   zoneEl.className = "tt-zone";
   zoneEl.textContent = zone;
   tip.appendChild(zoneEl);
-
   if (!data) {
     var av = document.createElement("div");
     av.className = "tt-available";
@@ -1389,7 +414,6 @@ function showTooltip(e, id) {
       tip.appendChild(entry);
     });
   }
-
   tip.style.display = "block";
   moveTooltip(e);
 }
@@ -1426,7 +450,6 @@ function renderSidebar() {
   var q = (document.getElementById("sidebarSearch").value || "")
     .toLowerCase()
     .trim();
-
   var items = [];
   SPOTS.forEach(function (s) {
     var status = getSpotStatus(s.id);
@@ -1464,11 +487,9 @@ function renderSidebar() {
       projText: projText,
     });
   });
-
   items.sort(function (a, b) {
     return a.id - b.id;
   });
-
   items.forEach(function (item) {
     var row = document.createElement("div");
     row.className = "sidebar-item";
@@ -1482,7 +503,6 @@ function renderSidebar() {
     zone.textContent = item.zone;
     var name = document.createElement("div");
     name.className = "si-name";
-
     if (!item.data) {
       name.className = "si-available-label";
       name.textContent = "Available";
@@ -1503,11 +523,8 @@ function renderSidebar() {
         info.appendChild(cb);
       }
     }
-
     row.appendChild(badge);
     row.appendChild(info);
-
-    // Swap button for assigned spots
     if (item.data) {
       (function (capturedId, capturedData) {
         capturedData.entries.forEach(function (entry, idx) {
@@ -1520,7 +537,6 @@ function renderSidebar() {
             openSwapModal(capturedId, idx);
           });
           row.appendChild(swapBtn);
-
           var delBtn = document.createElement("button");
           delBtn.className = "si-del-btn";
           delBtn.textContent = "×";
@@ -1537,7 +553,6 @@ function renderSidebar() {
         });
       })(item.id, item.data);
     }
-
     row.addEventListener("click", function () {
       scrollToSpot(item.id);
     });
@@ -1580,7 +595,6 @@ function handleFile(file) {
   var meta = document.getElementById("importMeta");
   if (!file) return;
   meta.textContent = "Reading " + file.name + "...";
-
   var reader = new FileReader();
   reader.onload = function (e) {
     var text = e.target.result;
@@ -1591,10 +605,8 @@ function handleFile(file) {
       meta.textContent = "File seems empty.";
       return;
     }
-
     importedHeaders = parseCSVLine(lines[0]);
     importedRows = lines.slice(1).map(parseCSVLine);
-
     meta.textContent =
       file.name +
       " — " +
@@ -1602,8 +614,6 @@ function handleFile(file) {
       " rows, " +
       importedHeaders.length +
       " columns";
-
-    // Populate column pickers
     ["colName", "colSpot", "colProject"].forEach(function (id) {
       var sel = document.getElementById(id);
       sel.innerHTML = "";
@@ -1611,7 +621,6 @@ function handleFile(file) {
         var opt = document.createElement("option");
         opt.value = i;
         opt.textContent = h;
-        // Smart defaults
         if (id === "colName" && /name/i.test(h)) opt.selected = true;
         if (id === "colSpot" && /spot|space|number/i.test(h))
           opt.selected = true;
@@ -1620,7 +629,6 @@ function handleFile(file) {
         sel.appendChild(opt);
       });
     });
-
     document.getElementById("colMap").classList.add("show");
   };
   reader.readAsText(file);
@@ -1649,7 +657,6 @@ function applyImport() {
   var ci = parseInt(document.getElementById("colName").value);
   var cs = parseInt(document.getElementById("colSpot").value);
   var cp = parseInt(document.getElementById("colProject").value);
-
   var newMap = {};
   importedRows.forEach(function (row) {
     if (!row[ci] || !row[cs]) return;
@@ -1666,24 +673,24 @@ function applyImport() {
           zone: ZONE_MAP[id] || "Other",
           label: String(id),
         };
-      var entry = { name: name, project: project, space_raw: spotRaw };
       var key = name + "|||" + project;
       if (
         !newMap[id].entries.find(function (e) {
           return e.name + "|||" + e.project === key;
         })
       ) {
-        newMap[id].entries.push(entry);
+        newMap[id].entries.push({
+          name: name,
+          project: project,
+          space_raw: spotRaw,
+        });
       }
     });
   });
-
-  // Convert keys to strings
   FINAL_MAP = {};
   Object.keys(newMap).forEach(function (k) {
     FINAL_MAP[String(k)] = newMap[k];
   });
-
   document.getElementById("importMeta").textContent =
     "Imported! " + Object.keys(FINAL_MAP).length + " spots assigned.";
   document.getElementById("colMap").classList.remove("show");
@@ -1757,21 +764,19 @@ function resetZoom() {
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.getElementById("mapImg").addEventListener("load", buildSpots);
 document.getElementById("mapImg").src = window.ADMIN_IMG_SRC;
+
 // ── Swap modal ────────────────────────────────────────────────────────────────
-var swapState = null; // {spotId, entryIndex}
+var swapState = null;
 
 function openSwapModal(spotId, entryIndex) {
   swapState = { spotId: spotId, entryIndex: entryIndex };
   var data = FINAL_MAP[String(spotId)];
   var entry = data.entries[entryIndex];
-
   document.getElementById("swapPersonName").textContent = entry.name;
   document.getElementById("swapPersonProject").textContent =
     entry.project || "";
   document.getElementById("swapFromSpot").textContent =
     "Spot " + spotId + " \u00b7 " + (ZONE_MAP[spotId] || "");
-
-  // Populate destination dropdown
   var sel = document.getElementById("swapToSpot");
   sel.innerHTML = '<option value="">-- pick a spot --</option>';
   SPOTS.forEach(function (s) {
@@ -1787,7 +792,6 @@ function openSwapModal(spotId, entryIndex) {
     if (status === "available") opt.style.color = "#1DB87A";
     sel.appendChild(opt);
   });
-
   document.getElementById("swapModal").style.display = "flex";
 }
 
@@ -1800,16 +804,11 @@ function confirmSwap() {
   if (!swapState) return;
   var toId = parseInt(document.getElementById("swapToSpot").value);
   if (!toId) return;
-
   var fromId = swapState.spotId;
   var fromData = FINAL_MAP[String(fromId)];
   var entry = fromData.entries[swapState.entryIndex];
-
-  // Remove from source
   fromData.entries.splice(swapState.entryIndex, 1);
   if (fromData.entries.length === 0) delete FINAL_MAP[String(fromId)];
-
-  // Add to destination
   if (!FINAL_MAP[String(toId)]) {
     FINAL_MAP[String(toId)] = {
       entries: [],
@@ -1818,19 +817,17 @@ function confirmSwap() {
     };
   }
   FINAL_MAP[String(toId)].entries.push(entry);
-
   closeSwapModal();
   buildSpots();
   saveMapToStorage();
 }
 
-// Close on backdrop click
 document.getElementById("swapModal").addEventListener("click", function (e) {
   if (e.target === this) closeSwapModal();
 });
 
 // ── Others / Unassigned ───────────────────────────────────────────────────────
-var OTHERS = []; // [{name, note}]
+var OTHERS = [];
 
 function showAddOther() {
   document.getElementById("addOtherForm").style.display = "block";
@@ -1848,7 +845,6 @@ function addOtherEntry() {
   OTHERS.push({ name: name, note: note });
   hideAddOther();
   renderOthers();
-  // Also push into index.html's public data via localStorage so search works
   saveOthersToStorage();
 }
 function removeOther(idx) {
@@ -1904,15 +900,8 @@ function saveOthersToStorage() {
     console.warn("KV save failed:", e);
   });
 }
-function loadOthersFromStorage() {
-  try {
-    var saved = localStorage.getItem("sats_others");
-    if (saved) OTHERS = JSON.parse(saved);
-  } catch (e) {}
-  renderOthers();
-}
 
-// Init — load from KV first, fall back to localStorage
+// ── Load from KV (seeded by data.json via get-data API) ──────────────────────
 function loadFromKV() {
   fetch("/api/get-data")
     .then(function (r) {
@@ -1935,22 +924,22 @@ function loadFromKV() {
       }
     })
     .catch(function () {
-      // KV unavailable — fall back to localStorage
-      loadOthersFromStorage();
+      try {
+        var s = localStorage.getItem("sats_final_map");
+        if (s) {
+          FINAL_MAP = JSON.parse(s);
+          buildSpots();
+        }
+        var s2 = localStorage.getItem("sats_others");
+        if (s2) {
+          OTHERS = JSON.parse(s2);
+          renderOthers();
+        }
+      } catch (e) {}
     });
 }
 
 loadFromKV();
-
-// Pre-load known special requests
-if (OTHERS.length === 0) {
-  OTHERS.push({
-    name: "David Stein",
-    note: "Soundscape too large for spot 102 and makes a lot of noise. Requested hallway outside toward the cabins — typical spot for spring/fall shows. Can help draw people toward the cabins.",
-  });
-  saveOthersToStorage();
-  renderOthers();
-}
 
 // ── Add late submission ───────────────────────────────────────────────────────
 function toggleAddCamper() {
@@ -1971,16 +960,13 @@ function submitNewCamper() {
     : "";
   var msg = document.getElementById("addCamperMsg");
   var spotId = parseInt(spotRaw);
-
   msg.style.display = "block";
   if (!name) {
     msg.style.color = "var(--red)";
     msg.textContent = "Name is required.";
     return;
   }
-
   if (spotId && spotId >= 1 && spotId <= 131) {
-    // Has a spot — add to FINAL_MAP
     var key = String(spotId);
     if (!FINAL_MAP[key]) {
       FINAL_MAP[key] = {
@@ -1989,9 +975,6 @@ function submitNewCamper() {
         label: key,
       };
     }
-    var already = FINAL_MAP[key].entries.find(function (e) {
-      return e.name.toLowerCase() === name.toLowerCase();
-    });
     FINAL_MAP[key].entries.push({
       name: name,
       project: project,
@@ -2004,11 +987,10 @@ function submitNewCamper() {
       name +
       " added to spot " +
       spotId +
-      " · " +
+      " \u00b7 " +
       (ZONE_MAP[spotId] || "") +
-      " ✓";
+      " \u2713";
   } else {
-    // No spot — add to Others/unassigned
     OTHERS.push({
       name: name,
       note: note || project || "Late submission — no spot assigned",
@@ -2016,21 +998,18 @@ function submitNewCamper() {
     saveOthersToStorage();
     renderOthers();
     msg.style.color = "var(--green)";
-    msg.textContent = name + " added to unassigned list ✓";
+    msg.textContent = name + " added to unassigned list \u2713";
   }
-
   document.getElementById("newName").value = "";
   document.getElementById("newProject").value = "";
   if (document.getElementById("newSpot"))
     document.getElementById("newSpot").value = "";
-
   setTimeout(function () {
     msg.style.display = "none";
     toggleAddCamper();
   }, 2500);
 }
 
-// Allow Enter key to submit
 ["newName", "newProject"].forEach(function (id) {
   document.addEventListener("DOMContentLoaded", function () {
     var el = document.getElementById(id);

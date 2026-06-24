@@ -1,0 +1,1171 @@
+{
+  "finalMap": {
+    "1": {
+      "entries": [
+        {
+          "name": "Anshika Bagla",
+          "project": "M-Ocean-Less",
+          "space_raw": "1 + 2"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "1"
+    },
+    "2": {
+      "entries": [
+        {
+          "name": "Anshika Bagla",
+          "project": "M-Ocean-Less",
+          "space_raw": "1 + 2"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "2"
+    },
+    "3": {
+      "entries": [
+        {
+          "name": "Ash Ryan Arnwine",
+          "project": "Rock With You; Collxn Pulse",
+          "space_raw": "3 + 4"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "3"
+    },
+    "4": {
+      "entries": [
+        {
+          "name": "Ash Ryan Arnwine",
+          "project": "Rock With You; Collxn Pulse",
+          "space_raw": "3 + 4"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "4"
+    },
+    "5": {
+      "entries": [
+        {
+          "name": "Logan Williams",
+          "project": "More Hats About Buildings and Food",
+          "space_raw": "5 + 6"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "5"
+    },
+    "6": {
+      "entries": [
+        {
+          "name": "Logan Williams",
+          "project": "More Hats About Buildings and Food",
+          "space_raw": "5 + 6"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "6"
+    },
+    "7": {
+      "entries": [
+        {
+          "name": "Steven Keyes",
+          "project": "Pericon, Patience / Impatience",
+          "space_raw": "7 + 8"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "7"
+    },
+    "8": {
+      "entries": [
+        {
+          "name": "Steven Keyes",
+          "project": "Pericon, Patience / Impatience",
+          "space_raw": "7 + 8"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "8"
+    },
+    "9": {
+      "entries": [
+        {
+          "name": "Julia Chun",
+          "project": "Woodwork!",
+          "space_raw": "9"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "9"
+    },
+    "10": {
+      "entries": [
+        {
+          "name": "Erica Du",
+          "project": "birdfeeder",
+          "space_raw": "10"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "10"
+    },
+    "11": {
+      "entries": [
+        {
+          "name": "GRACE CAMPIDILLI",
+          "project": "ORGANIC, CURVED AND POINTY",
+          "space_raw": "11"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "11"
+    },
+    "12": {
+      "entries": [
+        {
+          "name": "Hillary Leung",
+          "project": "shades",
+          "space_raw": "12"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "12"
+    },
+    "13": {
+      "entries": [
+        {
+          "name": "Taylor Tyson",
+          "project": "deconstructed furby",
+          "space_raw": "13"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "13"
+    },
+    "14": {
+      "entries": [
+        {
+          "name": "Yonatan Rozin",
+          "project": "P5 OSC Bridge",
+          "space_raw": "14"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "14"
+    },
+    "15": {
+      "entries": [
+        {
+          "name": "Kiane Efondo",
+          "project": "Cybrholic",
+          "space_raw": "15 + 16"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "15"
+    },
+    "16": {
+      "entries": [
+        {
+          "name": "Kiane Efondo",
+          "project": "Cybrholic",
+          "space_raw": "15 + 16"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "16"
+    },
+    "17": {
+      "entries": [
+        {
+          "name": "Cameron Alexander",
+          "project": "Various Projects",
+          "space_raw": "17 + 18"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "17"
+    },
+    "18": {
+      "entries": [
+        {
+          "name": "Cameron Alexander",
+          "project": "Various Projects",
+          "space_raw": "17 + 18"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "18"
+    },
+    "19": {
+      "entries": [
+        {
+          "name": "Noah Eisenbruch",
+          "project": "1) Artifacts 2) How to Unfold an Envelope",
+          "space_raw": "19 + 20"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "19"
+    },
+    "20": {
+      "entries": [
+        {
+          "name": "Noah Eisenbruch",
+          "project": "1) Artifacts 2) How to Unfold an Envelope",
+          "space_raw": "19 + 20"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "20"
+    },
+    "21": {
+      "entries": [
+        {
+          "name": "Hakan Alpay",
+          "project": "Two players one keyboard",
+          "space_raw": "21 - 22"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "21"
+    },
+    "22": {
+      "entries": [
+        {
+          "name": "Hakan Alpay",
+          "project": "Two players one keyboard",
+          "space_raw": "21 - 22"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "22"
+    },
+    "23": {
+      "entries": [
+        {
+          "name": "Szeyin Lee",
+          "project": "A Shy Flower",
+          "space_raw": "23"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "23"
+    },
+    "24": {
+      "entries": [
+        {
+          "name": "Jade Majed BuGhanem",
+          "project": "Naqsha, Velomind",
+          "space_raw": "24"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "24"
+    },
+    "25": {
+      "entries": [
+        {
+          "name": "Vas Kottas",
+          "project": "Checker Checker (analog game/digital assistant)",
+          "space_raw": "25 & 26"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "25"
+    },
+    "26": {
+      "entries": [
+        {
+          "name": "Vas Kottas",
+          "project": "Checker Checker (analog game/digital assistant)",
+          "space_raw": "25 & 26"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "26"
+    },
+    "27": {
+      "entries": [
+        {
+          "name": "Shy Ruparel",
+          "project": "Crane machine",
+          "space_raw": "27"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "27"
+    },
+    "28": {
+      "entries": [
+        {
+          "name": "Cyrene Zhang",
+          "project": "stickers!",
+          "space_raw": "28"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "28"
+    },
+    "29": {
+      "entries": [
+        {
+          "name": "Lauria",
+          "project": "Painting Brooklyn",
+          "space_raw": "29"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "29"
+    },
+    "30": {
+      "entries": [
+        {
+          "name": "Undarmaa Tserenkhuu",
+          "project": "Minibuilding",
+          "space_raw": "30"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "30"
+    },
+    "31": {
+      "entries": [
+        {
+          "name": "Eve Shi",
+          "project": "The Unfixed Face — a collage oracle system",
+          "space_raw": "31 + 32"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "31"
+    },
+    "32": {
+      "entries": [
+        {
+          "name": "Eve Shi",
+          "project": "The Unfixed Face — a collage oracle system",
+          "space_raw": "31 + 32"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "32"
+    },
+    "33": {
+      "entries": [
+        {
+          "name": "Ben Anderman",
+          "project": "Spork-8 CPU",
+          "space_raw": "33 + 34"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "33"
+    },
+    "34": {
+      "entries": [
+        {
+          "name": "Ben Anderman",
+          "project": "Spork-8 CPU",
+          "space_raw": "33 + 34"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "34"
+    },
+    "35": {
+      "entries": [
+        {
+          "name": "Sea Won Kim (Point person)\nChristine Chang",
+          "project": "d",
+          "space_raw": "35 + 36"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "35"
+    },
+    "36": {
+      "entries": [
+        {
+          "name": "Sea Won Kim (Point person)\nChristine Chang",
+          "project": "d",
+          "space_raw": "35 + 36"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "36"
+    },
+    "37": {
+      "entries": [
+        {
+          "name": "Andrea Fehrman",
+          "project": "Through the window",
+          "space_raw": "37"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "37"
+    },
+    "38": {
+      "entries": [
+        {
+          "name": "Richie Mendelsohn",
+          "project": "Hello these are my projects",
+          "space_raw": "38"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "38"
+    },
+    "40": {
+      "entries": [
+        {
+          "name": "Alejandro Mora",
+          "project": "LeKiwi: Low Cost Mobile Manipulator",
+          "space_raw": "40"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "40"
+    },
+    "41": {
+      "entries": [
+        {
+          "name": "Zachary Roney",
+          "project": "Origo",
+          "space_raw": "41 + 42"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "41"
+    },
+    "42": {
+      "entries": [
+        {
+          "name": "Zachary Roney",
+          "project": "Origo",
+          "space_raw": "41 + 42"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "42"
+    },
+    "43": {
+      "entries": [
+        {
+          "name": "Danny Sulit",
+          "project": "Clock It!",
+          "space_raw": "43 + 44"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "43"
+    },
+    "44": {
+      "entries": [
+        {
+          "name": "Danny Sulit",
+          "project": "Clock It!",
+          "space_raw": "43 + 44"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "44"
+    },
+    "53": {
+      "entries": [
+        {
+          "name": "Avi Bagla",
+          "project": "Type to Pay",
+          "space_raw": "53 & 54"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "53"
+    },
+    "54": {
+      "entries": [
+        {
+          "name": "Avi Bagla",
+          "project": "Type to Pay",
+          "space_raw": "53 & 54"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "54"
+    },
+    "55": {
+      "entries": [
+        {
+          "name": "Nicole Dubin",
+          "project": "An Exploration of Punchcard Machine Knitting",
+          "space_raw": "55 & 56"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "55"
+    },
+    "56": {
+      "entries": [
+        {
+          "name": "Nicole Dubin",
+          "project": "An Exploration of Punchcard Machine Knitting",
+          "space_raw": "55 & 56"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "56"
+    },
+    "58": {
+      "entries": [
+        {
+          "name": "(N/A)",
+          "project": "Tracing Stories and Emotions in a Digital Gallery",
+          "space_raw": "58"
+        }
+      ],
+      "zone": "Craft Corner",
+      "label": "58"
+    },
+    "61": {
+      "entries": [
+        {
+          "name": "Jeanette Andrews",
+          "project": "beep boop blue orbs",
+          "space_raw": "61"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "61"
+    },
+    "62": {
+      "entries": [
+        {
+          "name": "Anah Lewi",
+          "project": "Affirmations and A Flower Doesn't Bloom Overnight",
+          "space_raw": "62"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "62"
+    },
+    "63": {
+      "entries": [
+        {
+          "name": "Saba Ghazi (point person) isra ameen and 30 attendees from our Sculpting the Sanctuary Session",
+          "project": "Sanctuary",
+          "space_raw": "63? Phone Booth in North Lodge"
+        },
+        {
+          "name": "Isra (point person) and Saba",
+          "project": "Sari Project (no title yet)",
+          "space_raw": "63 North Lodge"
+        },
+        {
+          "name": "Point Person: Shubha Jagannatha, Neel Dhanesha",
+          "project": "Tiny Tunes",
+          "space_raw": "63"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "63",
+      "sub_labels": ["63.1", "63.2", "63.3"]
+    },
+    "64": {
+      "entries": [
+        {
+          "name": "Ciri Stowell",
+          "project": "A Century Within These Walls",
+          "space_raw": "64"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "64"
+    },
+    "65": {
+      "entries": [
+        {
+          "name": "Munro Wyman",
+          "project": "Libryinth",
+          "space_raw": "65"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "65"
+    },
+    "66": {
+      "entries": [
+        {
+          "name": "Neel Dhanesha",
+          "project": "Ticker Tape Tee-off",
+          "space_raw": "66"
+        },
+        {
+          "name": "Saba Ghazi (point person), Andri Kumar, Akbar Mirza, Isra Ameen",
+          "project": "Puppet Theater (title tbd)",
+          "space_raw": "66"
+        }
+      ],
+      "zone": "North Lodge",
+      "label": "66",
+      "sub_labels": ["66.1", "66.2"]
+    },
+    "68": {
+      "entries": [
+        {
+          "name": "Mike Lucero",
+          "project": "Citibike Commute Challenge",
+          "space_raw": "68"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "68"
+    },
+    "70": {
+      "entries": [
+        {
+          "name": "Frank Cheng",
+          "project": "You are a whale",
+          "space_raw": "70"
+        }
+      ],
+      "zone": "Amphitheater",
+      "label": "70"
+    },
+    "71": {
+      "entries": [
+        {
+          "name": "Issac Alfaro",
+          "project": "Interactive Gallery with ML5js and P5-Phone",
+          "space_raw": "71"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "71"
+    },
+    "72": {
+      "entries": [
+        {
+          "name": "Zachary Roney",
+          "project": "Origo",
+          "space_raw": "72"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "72"
+    },
+    "73": {
+      "entries": [
+        {
+          "name": "G Malin",
+          "project": "New Soft Skills (and tiny zines)",
+          "space_raw": "73"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "73"
+    },
+    "74": {
+      "entries": [
+        {
+          "name": "Lily Crandall",
+          "project": "Objects Against Screen Time",
+          "space_raw": "74"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "74"
+    },
+    "75": {
+      "entries": [
+        {
+          "name": "Brandon Liu",
+          "project": "Ambient Map Gadget + soft stuff",
+          "space_raw": "75"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "75"
+    },
+    "76": {
+      "entries": [
+        {
+          "name": "Rob Faludi",
+          "project": "Indoor Rust Garden, Earthquake Lamp",
+          "space_raw": "76"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "76"
+    },
+    "77": {
+      "entries": [
+        {
+          "name": "judy",
+          "project": "You Be The Judge",
+          "space_raw": "77"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "77"
+    },
+    "78": {
+      "entries": [
+        {
+          "name": "Shiva",
+          "project": "Everydays",
+          "space_raw": "78"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "78"
+    },
+    "79": {
+      "entries": [
+        {
+          "name": "Willem Yarbrough",
+          "project": "Ambient 101 and Piezochimes v2",
+          "space_raw": "79"
+        }
+      ],
+      "zone": "Soft Lab",
+      "label": "79"
+    },
+    "80": {
+      "entries": [
+        {
+          "name": "Daoxin Chen",
+          "project": "Ripple touch",
+          "space_raw": "80"
+        }
+      ],
+      "zone": "Phone Booth",
+      "label": "80"
+    },
+    "81": {
+      "entries": [
+        {
+          "name": "Luna(Yuxin) Chen",
+          "project": "Echoes of the Gallop",
+          "space_raw": "81"
+        }
+      ],
+      "zone": "Phone Booth",
+      "label": "81"
+    },
+    "82": {
+      "entries": [
+        {
+          "name": "Lila Yedidia",
+          "project": "Water",
+          "space_raw": "82"
+        }
+      ],
+      "zone": "Phone Booth",
+      "label": "82"
+    },
+    "83": {
+      "entries": [
+        {
+          "name": "Meguna",
+          "project": "Tbd, name coming soon",
+          "space_raw": "83"
+        }
+      ],
+      "zone": "Phone Booth",
+      "label": "83"
+    },
+    "84": {
+      "entries": [
+        {
+          "name": "Sophia Diggs-Galligan",
+          "project": "Intercom",
+          "space_raw": "84"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "84"
+    },
+    "85": {
+      "entries": [
+        {
+          "name": "Hank Duhaime",
+          "project": "REGNBAGE, Bugs! Bugs! Bugs!",
+          "space_raw": "85"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "85"
+    },
+    "86": {
+      "entries": [
+        {
+          "name": "jiadai he",
+          "project": "sounds you see",
+          "space_raw": "86"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "86"
+    },
+    "87": {
+      "entries": [
+        {
+          "name": "Zea Zhao",
+          "project": "Manhattan is an island",
+          "space_raw": "87"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "87"
+    },
+    "88": {
+      "entries": [
+        {
+          "name": "Voyo Woo",
+          "project": "An Eulogy to Earth",
+          "space_raw": "88"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "88"
+    },
+    "89": {
+      "entries": [
+        {
+          "name": "Jacky Dang",
+          "project": "Frame Jockey",
+          "space_raw": "89"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "89"
+    },
+    "90": {
+      "entries": [
+        {
+          "name": "Silka",
+          "project": "Rocks",
+          "space_raw": "90"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "90"
+    },
+    "91": {
+      "entries": [
+        {
+          "name": "Isra",
+          "project": "Parallels",
+          "space_raw": "91"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "91"
+    },
+    "92": {
+      "entries": [
+        {
+          "name": "Matthew Yacavone (point person), Sasha Solovyeva",
+          "project": "Choir of Angels (Rat)",
+          "space_raw": "92"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "92"
+    },
+    "93": {
+      "entries": [
+        {
+          "name": "Richie Mendelsohn (Point person), Molly Boerner, Matt Yacavone",
+          "project": "Do you like it around here?",
+          "space_raw": "93"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "93"
+    },
+    "94": {
+      "entries": [
+        {
+          "name": "Kevin Stirnweis",
+          "project": "1) Notice Me 2) Waves 3) Ceramic TV",
+          "space_raw": "94 + 95"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "94"
+    },
+    "95": {
+      "entries": [
+        {
+          "name": "Kevin Stirnweis",
+          "project": "1) Notice Me 2) Waves 3) Ceramic TV",
+          "space_raw": "94 + 95"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "95"
+    },
+    "96": {
+      "entries": [
+        {
+          "name": "Sam Keene",
+          "project": "Generative Drum Circle",
+          "space_raw": "96 & 97"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "96"
+    },
+    "97": {
+      "entries": [
+        {
+          "name": "Sam Keene",
+          "project": "Generative Drum Circle",
+          "space_raw": "96 & 97"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "97"
+    },
+    "100": {
+      "entries": [
+        {
+          "name": "Rina Chen, 1",
+          "project": "textile things",
+          "space_raw": "100"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "100"
+    },
+    "103": {
+      "entries": [
+        {
+          "name": "David Wallin",
+          "project": "Seahorse Puppet, Spring Factory, Fairy Home Terrarium",
+          "space_raw": "103"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "103"
+    },
+    "104": {
+      "entries": [
+        {
+          "name": "Logan Gittelson (with support from Basia and Cyrene)",
+          "project": "Knight Fishing",
+          "space_raw": "104"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "104"
+    },
+    "105": {
+      "entries": [
+        {
+          "name": "Meghna Dholakia",
+          "project": "Moving Mechanisms",
+          "space_raw": "105"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "105"
+    },
+    "106": {
+      "entries": [
+        {
+          "name": "Meredith Clarke",
+          "project": "Lag: The Game",
+          "space_raw": "106"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "106"
+    },
+    "107": {
+      "entries": [
+        {
+          "name": "Molly Boerner, Matt Yacavone",
+          "project": "Record Player Music Box",
+          "space_raw": "107"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "107"
+    },
+    "108": {
+      "entries": [
+        {
+          "name": "Deron Gopie",
+          "project": "The Social Hour",
+          "space_raw": "108"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "108"
+    },
+    "109": {
+      "entries": [
+        {
+          "name": "Andrew Lott",
+          "project": "Cookie of Infinite Fortune",
+          "space_raw": "109"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "109"
+    },
+    "110": {
+      "entries": [
+        {
+          "name": "sarah gray",
+          "project": "5x5 Cube + Altar of My Disappointments + Camp Sketchbook",
+          "space_raw": "110"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "110"
+    },
+    "111": {
+      "entries": [
+        {
+          "name": "Jaclyn McKay",
+          "project": "Super Bloom",
+          "space_raw": "111"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "111"
+    },
+    "112": {
+      "entries": [
+        {
+          "name": "One person",
+          "project": "Collision Box",
+          "space_raw": "112"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "112"
+    },
+    "113": {
+      "entries": [
+        {
+          "name": "Molly Boerner",
+          "project": "Music Man",
+          "space_raw": "113"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "113"
+    },
+    "116": {
+      "entries": [
+        {
+          "name": "Zach Gawlik",
+          "project": "OPTIMIZED FOR ENGAGEMENT",
+          "space_raw": "116"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "116"
+    },
+    "117": {
+      "entries": [
+        {
+          "name": "Pranika",
+          "project": "One Thing One Day Exhibit",
+          "space_raw": "117"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "117"
+    },
+    "118": {
+      "entries": [
+        {
+          "name": "Ada Zhang",
+          "project": "1/Jialing 2/Blood and flesh GPT",
+          "space_raw": "118"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "118"
+    },
+    "119": {
+      "entries": [
+        {
+          "name": "Connie Liu",
+          "project": "word and image",
+          "space_raw": "119"
+        }
+      ],
+      "zone": "South Lodge",
+      "label": "119"
+    },
+    "120": {
+      "entries": [
+        {
+          "name": "Rebecca Odes",
+          "project": "investigation of luminous e/motion",
+          "space_raw": "120 CABIN 1"
+        }
+      ],
+      "zone": "Cabin 1",
+      "label": "120"
+    },
+    "121": {
+      "entries": [
+        {
+          "name": "Andri Kumar",
+          "project": "Nayika (The One Who Longs)",
+          "space_raw": "Cabin 1 - 121"
+        }
+      ],
+      "zone": "Cabin 1",
+      "label": "121"
+    },
+    "122": {
+      "entries": [
+        {
+          "name": "Valentine Ye",
+          "project": "AI Cyberdeck",
+          "space_raw": "Cabin 1 - 122"
+        }
+      ],
+      "zone": "Cabin 1",
+      "label": "122"
+    },
+    "123": {
+      "entries": [
+        {
+          "name": "Tala Schlossberg",
+          "project": "Remix",
+          "space_raw": "123 CABIN 1"
+        }
+      ],
+      "zone": "Cabin 1",
+      "label": "123"
+    },
+    "124": {
+      "entries": [
+        {
+          "name": "Jill Cohen",
+          "project": "Dance, Dance, Dance",
+          "space_raw": "124 CABIN 2"
+        }
+      ],
+      "zone": "Cabin 2",
+      "label": "124"
+    }
+  },
+  "others": [
+    {
+      "name": "David Stein",
+      "note": "Soundscape too large for spot 102 and makes a lot of noise. Requested hallway outside toward the cabins — typical spot for spring/fall shows. Can help draw people toward the cabins."
+    }
+  ]
+}
