@@ -1792,7 +1792,7 @@ function openSwapModal(spotId, entryIndex) {
 
   // Populate destination dropdown
   var sel = document.getElementById("swapToSpot");
-  sel.innerHTML = '<option value="">-- pick a spot --</option>';
+  sel.innerHTML = '<option value="">-- pick a spot --</option><option value="unassigned" style="color:#ffb400">⟶ Unassigned / Others list</option>';
   SPOTS.forEach(function (s) {
     if (s.id === spotId) return;
     var status = getSpotStatus(s.id);
@@ -1817,7 +1817,24 @@ function closeSwapModal() {
 
 function confirmSwap() {
   if (!swapState) return;
-  var toId = parseInt(document.getElementById("swapToSpot").value);
+  var toVal = document.getElementById("swapToSpot").value;
+  if (!toVal) return;
+  if (toVal === "unassigned") {
+    var fromId = swapState.spotId;
+    var fromData = FINAL_MAP[String(fromId)];
+    var entry = fromData.entries[swapState.entryIndex];
+    var note = prompt("Add a note for " + entry.name + " (optional):", entry.project || "");
+    fromData.entries.splice(swapState.entryIndex, 1);
+    if (fromData.entries.length === 0) delete FINAL_MAP[String(fromId)];
+    saveMapToStorage();
+    OTHERS.push({ name: entry.name, note: note || entry.project || "Moved from spot " + fromId });
+    saveOthersToStorage();
+    renderOthers();
+    closeSwapModal();
+    buildSpots();
+    return;
+  }
+  var toId = parseInt(toVal);
   if (!toId) return;
 
   var fromId = swapState.spotId;
