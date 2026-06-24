@@ -1463,7 +1463,15 @@ function renderSidebar() {
     });
   });
 
+  // Add Others to the list
+  OTHERS.forEach(function(o) {
+    if (q && !o.name.toLowerCase().includes(q) && !(o.note||"").toLowerCase().includes(q)) return;
+    items.push({ id: null, status: "other", zone: "No spot assigned", data: { entries: [{ name: o.name, project: o.note || "" }] }, nameText: o.name, projText: o.note || "" });
+  });
+
   items.sort(function (a, b) {
+    if (a.id === null) return 1;
+    if (b.id === null) return -1;
     return a.id - b.id;
   });
 
@@ -1472,7 +1480,7 @@ function renderSidebar() {
     row.className = "sidebar-item";
     var badge = document.createElement("div");
     badge.className = "si-badge " + item.status;
-    badge.textContent = item.id;
+    badge.textContent = item.id !== null ? item.id : "—";
     var info = document.createElement("div");
     info.className = "si-info";
     var zone = document.createElement("div");
