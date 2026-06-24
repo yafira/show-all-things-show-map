@@ -28,34 +28,27 @@ export default async function handler(req, res) {
     const { finalMap, others } = req.body;
     const saves = [];
 
-    // Upstash REST: POST /set/key with plain string body
+    // Upstash REST API: POST /pipeline with array of commands
+    const commands = [];
     if (finalMap !== undefined) {
-      saves.push(
-        fetch(
-          `${url}/set/sats_final_map/${encodeURIComponent(JSON.stringify(finalMap))}`,
-          {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        ),
-      );
+      commands.push(["SET", "sats_final_map", JSON.stringify(finalMap)]);
     }
-
     if (others !== undefined) {
-      saves.push(
-        fetch(
-          `${url}/set/sats_others/${encodeURIComponent(JSON.stringify(others))}`,
-          {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        ),
-      );
+      commands.push(["SET", "sats_others", JSON.stringify(others)]);
     }
 
-    const results = await Promise.all(saves);
-    const texts = await Promise.all(results.map((r) => r.text()));
-    console.log("Upstash responses:", texts);
+    if (commands.length > 0) {
+      const r = await fetch(`${url}/pipeline`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commands),
+      });
+      const text = await r.text();
+      console.log("Upstash pipeline response:", text);
+    }
 
     res.status(200).json({ ok: true });
   } catch (e) {

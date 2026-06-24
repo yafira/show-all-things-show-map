@@ -1251,9 +1251,18 @@ var ZONE_MAP = {
   83: "Phone Booth",
 };
 
-// ── Persist to localStorage ──────────────────────────────────────────────────
+// ── Persist to KV + localStorage ─────────────────────────────────────────────
 function saveMapToStorage() {
-  saveMapToStorage();
+  try {
+    localStorage.setItem("sats_final_map", JSON.stringify(FINAL_MAP));
+  } catch (e) {}
+  fetch("/api/save-data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ finalMap: FINAL_MAP }),
+  }).catch(function (e) {
+    console.warn("KV save failed:", e);
+  });
 }
 
 // ── Spot status helpers ───────────────────────────────────────────────────────
