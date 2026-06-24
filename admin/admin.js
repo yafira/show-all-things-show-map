@@ -1878,3 +1878,84 @@ if (OTHERS.length === 0) {
   saveOthersToStorage();
   renderOthers();
 }
+
+// ── Add late submission ───────────────────────────────────────────────────────
+function toggleAddCamper() {
+  var panel = document.getElementById("addCamperPanel");
+  var isOpen = panel.style.display !== "none";
+  panel.style.display = isOpen ? "none" : "block";
+  if (!isOpen) document.getElementById("newName").focus();
+}
+
+function submitNewCamper() {
+  var name = document.getElementById("newName").value.trim();
+  var project = document.getElementById("newProject").value.trim();
+  var spotRaw = document.getElementById("newSpot").value.trim();
+  var msg = document.getElementById("addCamperMsg");
+  var spotId = parseInt(spotRaw);
+
+  msg.style.display = "block";
+
+  if (!name) {
+    msg.style.color = "var(--red)";
+    msg.textContent = "Name is required.";
+    return;
+  }
+  if (!spotId || spotId < 1 || spotId > 131) {
+    msg.style.color = "var(--red)";
+    msg.textContent = "Enter a valid spot number (1–131).";
+    return;
+  }
+
+  var key = String(spotId);
+  if (!FINAL_MAP[key]) {
+    FINAL_MAP[key] = {
+      entries: [],
+      zone: ZONE_MAP[spotId] || "Other",
+      label: key,
+    };
+  }
+
+  // Check for duplicate
+  var already = FINAL_MAP[key].entries.find(function (e) {
+    return e.name.toLowerCase() === name.toLowerCase();
+  });
+  if (already) {
+    msg.style.color = "var(--yellow)";
+    msg.textContent = name + " is already at spot " + spotId + ".";
+    return;
+  }
+
+  FINAL_MAP[key].entries.push({
+    name: name,
+    project: project,
+    space_raw: spotRaw,
+  });
+
+  // Clear form
+  document.getElementById("newName").value = "";
+  document.getElementById("newProject").value = "";
+  document.getElementById("newSpot").value = "";
+
+  var zone = ZONE_MAP[spotId] || "Other";
+  msg.style.color = "var(--green)";
+  msg.textContent =
+    name + " added to spot " + spotId + " \u00b7 " + zone + " \u2713";
+
+  buildSpots();
+
+  // Auto-hide message after 3s
+  setTimeout(function () {
+    msg.style.display = "none";
+  }, 3000);
+}
+
+// Allow Enter key to submit
+["newName", "newProject", "newSpot"].forEach(function (id) {
+  document.getElementById(id) &&
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById(id).addEventListener("keydown", function (e) {
+        if (e.key === "Enter") submitNewCamper();
+      });
+    });
+});
