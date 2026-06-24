@@ -919,8 +919,9 @@ function loadFromKV() {
         try {
           localStorage.setItem("sats_final_map", JSON.stringify(FINAL_MAP));
         } catch (e) {}
-        buildSpots();
       }
+      kvReady = true;
+      if (mapImgReady) buildSpots();
       if (data.others && data.others.length > 0) {
         OTHERS = data.others;
         try {
