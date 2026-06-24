@@ -2118,7 +2118,7 @@ function openPrintView() {
   });
   rows.sort(function(a, b) { return a.spot - b.spot; });
 
-  var html = '<html><head><title></title><style>'
+  var html = '<html><head><title>SATS 2026 Campers List</title><style>'
     + 'body{font-family:sans-serif;padding:32px;color:#111}'
     + 'h1{font-size:20px;margin-bottom:4px}p{margin:0 0 24px;color:#666;font-size:13px}'
     + 'table{width:100%;border-collapse:collapse;font-size:13px}'
