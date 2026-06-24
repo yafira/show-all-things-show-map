@@ -1920,7 +1920,11 @@ function toggleAddCamper() {
 function submitNewCamper() {
   var name = document.getElementById("newName").value.trim();
   var project = document.getElementById("newProject").value.trim();
+  var spotRaw = document.getElementById("newSpot")
+    ? document.getElementById("newSpot").value.trim()
+    : "";
   var msg = document.getElementById("addCamperMsg");
+  var spotId = parseInt(spotRaw);
 
   msg.style.display = "block";
   if (!name) {
@@ -1929,22 +1933,60 @@ function submitNewCamper() {
     return;
   }
 
-  OTHERS.push({ name: name, note: project || "Late submission" });
-  saveOthersToStorage();
-  renderOthers();
+  if (spotId && spotId >= 1 && spotId <= 131) {
+    // Has a spot — add to FINAL_MAP
+    var key = String(spotId);
+    if (!FINAL_MAP[key]) {
+      FINAL_MAP[key] = {
+        entries: [],
+        zone: ZONE_MAP[spotId] || "Other",
+        label: key,
+      };
+    }
+    var already = FINAL_MAP[key].entries.find(function (e) {
+      return e.name.toLowerCase() === name.toLowerCase();
+    });
+    if (already) {
+      msg.style.color = "var(--yellow)";
+      msg.textContent = name + " is already at spot " + spotId + ".";
+      return;
+    }
+    FINAL_MAP[key].entries.push({
+      name: name,
+      project: project,
+      space_raw: spotRaw,
+    });
+    saveMapToStorage();
+    buildSpots();
+    msg.style.color = "var(--green)";
+    msg.textContent =
+      name +
+      " added to spot " +
+      spotId +
+      " · " +
+      (ZONE_MAP[spotId] || "") +
+      " ✓";
+  } else {
+    // No spot — add to Others/unassigned
+    OTHERS.push({
+      name: name,
+      note: project || "Late submission — no spot assigned",
+    });
+    saveOthersToStorage();
+    renderOthers();
+    msg.style.color = "var(--green)";
+    msg.textContent = name + " added to unassigned list ✓";
+  }
 
   document.getElementById("newName").value = "";
   document.getElementById("newProject").value = "";
+  if (document.getElementById("newSpot"))
+    document.getElementById("newSpot").value = "";
 
-  // Save updated FINAL_MAP to localStorage so public page reflects it
-  saveMapToStorage();
-
-  msg.style.color = "var(--green)";
-  msg.textContent = name + " added ✓";
   setTimeout(function () {
     msg.style.display = "none";
     toggleAddCamper();
-  }, 2000);
+  }, 2500);
 }
 
 // Allow Enter key to submit

@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Show All Things Show 2026 — Admin</title>
-    <link rel="stylesheet" href="/admin/admin.css" />
+    <title>SATS 2026 — Admin</title>
+    <link rel="stylesheet" href="admin/admin.css" />
   </head>
   <body>
     <header>
       <div class="header-left">
-        <span class="brand">Show All Things Show 2026</span>
+        <span class="brand">SATS 2026</span>
         <span class="admin-badge">Admin</span>
       </div>
       <div class="header-actions">
@@ -192,7 +192,10 @@
               text-transform: uppercase;
               letter-spacing: 0.07em;
             "
-            >Spot #</label
+            >Spot #
+            <span style="font-weight: 400; opacity: 0.6"
+              >(optional)</span
+            ></label
           >
           <input
             id="newSpot"
@@ -215,7 +218,7 @@
         <div style="display: flex; gap: 6px; flex-shrink: 0">
           <button class="btn" onclick="toggleAddCamper()">Cancel</button>
           <button class="btn primary" onclick="submitNewCamper()">
-            Add to map
+            Add to list
           </button>
         </div>
       </div>
