@@ -1789,3 +1789,92 @@ function confirmSwap() {
 document.getElementById("swapModal").addEventListener("click", function (e) {
   if (e.target === this) closeSwapModal();
 });
+
+// ── Others / Unassigned ───────────────────────────────────────────────────────
+var OTHERS = []; // [{name, note}]
+
+function showAddOther() {
+  document.getElementById("addOtherForm").style.display = "block";
+  document.getElementById("otherName").focus();
+}
+function hideAddOther() {
+  document.getElementById("addOtherForm").style.display = "none";
+  document.getElementById("otherName").value = "";
+  document.getElementById("otherNote").value = "";
+}
+function addOtherEntry() {
+  var name = document.getElementById("otherName").value.trim();
+  var note = document.getElementById("otherNote").value.trim();
+  if (!name) return;
+  OTHERS.push({ name: name, note: note });
+  hideAddOther();
+  renderOthers();
+  // Also push into index.html's public data via localStorage so search works
+  saveOthersToStorage();
+}
+function removeOther(idx) {
+  OTHERS.splice(idx, 1);
+  renderOthers();
+  saveOthersToStorage();
+}
+function renderOthers() {
+  var list = document.getElementById("othersList");
+  list.innerHTML = "";
+  if (OTHERS.length === 0) {
+    list.innerHTML =
+      '<div style="padding:8px 10px;font-size:11px;color:var(--muted)">None yet</div>';
+    return;
+  }
+  OTHERS.forEach(function (o, idx) {
+    var row = document.createElement("div");
+    row.style.cssText =
+      "display:flex;align-items:flex-start;gap:7px;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.04)";
+    var info = document.createElement("div");
+    info.style.flex = "1";
+    var nm = document.createElement("div");
+    nm.style.cssText = "font-size:11px;color:var(--text);font-weight:500";
+    nm.textContent = o.name;
+    var nt = document.createElement("div");
+    nt.style.cssText = "font-size:10px;color:var(--muted);margin-top:1px";
+    nt.textContent = o.note || "No note";
+    info.appendChild(nm);
+    info.appendChild(nt);
+    var del = document.createElement("button");
+    del.style.cssText =
+      "background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:0 2px;flex-shrink:0";
+    del.textContent = "×";
+    del.title = "Remove";
+    del.addEventListener("click", function () {
+      removeOther(idx);
+    });
+    row.appendChild(info);
+    row.appendChild(del);
+    list.appendChild(row);
+  });
+}
+
+function saveOthersToStorage() {
+  try {
+    localStorage.setItem("sats_others", JSON.stringify(OTHERS));
+  } catch (e) {}
+}
+function loadOthersFromStorage() {
+  try {
+    var saved = localStorage.getItem("sats_others");
+    if (saved) OTHERS = JSON.parse(saved);
+  } catch (e) {}
+  renderOthers();
+}
+
+// Init others on load
+loadOthersFromStorage();
+
+// Pre-load known special requests
+if (OTHERS.length === 0) {
+  OTHERS.push({
+    name: "David Stein",
+    note: "Soundscape too large for spot 102 and makes a lot of noise. Requested hallway outside toward the cabins — typical spot for spring/fall shows. Can help draw people toward the cabins.",
+  });
+  saveOthersToStorage();
+  renderOthers();
+}
