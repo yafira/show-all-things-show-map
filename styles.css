@@ -10,10 +10,10 @@
   --cyan-ring: rgba(32, 212, 216, 0.45);
   --bg: #0e0e0e;
   --surface: #171717;
-  --surface2: #222;
+  --surface2: #242424;
   --border: rgba(255, 255, 255, 0.07);
   --text: #f0f0f0;
-  --muted: rgba(255, 255, 255, 0.4);
+  --muted: rgba(255, 255, 255, 0.38);
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: "SF Mono", "Fira Code", monospace;
 }
@@ -26,23 +26,21 @@ body {
   flex-direction: column;
 }
 
-/* Header */
+/* ── Header ── */
 header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 18px 20px 16px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
   flex-shrink: 0;
 }
-.header-left {
+.header-top {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
 }
 .brand {
   font-size: 11px;
@@ -52,59 +50,76 @@ header {
   color: var(--cyan);
 }
 .title {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
 }
 
+/* Big inviting search bar */
 .search-wrap {
   position: relative;
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+}
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
 }
 .search-wrap input {
   width: 100%;
-  padding: 10px 40px 10px 14px;
+  padding: 16px 52px 16px 52px;
   background: var(--surface2);
-  border: 1px solid rgba(32, 212, 216, 0.3);
+  border: 2px solid rgba(32, 212, 216, 0.3);
   color: var(--text);
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-family: var(--font);
   outline: none;
   -webkit-appearance: none;
-  transition: border-color 0.15s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
 }
 .search-wrap input:focus {
   border-color: var(--cyan);
+  background: #1f1f1f;
+  box-shadow: 0 0 0 4px rgba(32, 212, 216, 0.1);
 }
 .search-wrap input::placeholder {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 17px;
 }
 .search-clear {
   position: absolute;
-  right: 10px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
   display: none;
   line-height: 1;
   padding: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
 .search-clear.show {
   display: block;
 }
 
-/* Result banner */
+/* ── Result banner ── */
 .result-banner {
   display: none;
-  padding: 12px 16px;
+  padding: 12px 20px;
   background: rgba(32, 212, 216, 0.07);
-  border-bottom: 1px solid rgba(32, 212, 216, 0.18);
-  gap: 14px;
+  border-bottom: 1px solid rgba(32, 212, 216, 0.16);
+  gap: 16px;
   flex-wrap: wrap;
   align-items: flex-start;
 }
@@ -114,18 +129,18 @@ header {
 .result-card {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   min-width: 0;
 }
 .result-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--cyan);
   word-break: break-word;
 }
 .result-project {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   word-break: break-word;
 }
 .result-location {
@@ -135,7 +150,7 @@ header {
   margin-top: 3px;
   background: rgba(255, 255, 255, 0.06);
   display: inline-block;
-  padding: 3px 8px;
+  padding: 3px 9px;
   border-radius: 4px;
   white-space: nowrap;
 }
@@ -145,9 +160,9 @@ header {
   align-self: center;
 }
 
-/* Hint bar */
+/* ── Hint ── */
 .hint {
-  padding: 8px 16px;
+  padding: 7px 20px;
   font-size: 12px;
   color: var(--muted);
   border-bottom: 1px solid var(--border);
@@ -155,7 +170,7 @@ header {
   text-align: center;
 }
 
-/* Map */
+/* ── Map ── */
 .map-container {
   flex: 1;
   overflow: auto;
@@ -180,7 +195,7 @@ header {
   max-width: none;
 }
 
-/* Spot overlays */
+/* ── Spots ── */
 .spot {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -218,7 +233,7 @@ header {
   }
 }
 
-/* Zoom controls */
+/* ── Zoom controls ── */
 .zoom-controls {
   position: fixed;
   bottom: 24px;
@@ -229,8 +244,8 @@ header {
   z-index: 400;
 }
 .zoom-btn {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
@@ -248,37 +263,39 @@ header {
   background: var(--surface2);
 }
 .zoom-btn:active {
-  background: var(--surface2);
-  transform: scale(0.95);
+  transform: scale(0.93);
 }
 
-/* Mobile adjustments */
+/* ── Mobile ── */
 @media (max-width: 600px) {
   header {
-    padding: 10px 12px;
-    gap: 8px;
+    padding: 14px 14px 12px;
   }
-  .title {
-    display: none;
+  .search-wrap input {
+    font-size: 16px;
+    padding: 15px 48px 15px 48px;
+    border-radius: 12px;
+  }
+  .search-wrap input::placeholder {
+    font-size: 15px;
   }
   .result-banner {
-    padding: 10px 12px;
-    gap: 10px;
+    padding: 10px 14px;
   }
   .result-name {
-    font-size: 14px;
+    font-size: 15px;
   }
   .hint {
     font-size: 11px;
-    padding: 6px 12px;
+    padding: 6px 14px;
   }
   .zoom-controls {
     bottom: 16px;
     right: 12px;
   }
   .zoom-btn {
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
     font-size: 24px;
   }
 }
