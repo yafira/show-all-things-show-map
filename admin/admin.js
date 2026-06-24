@@ -947,6 +947,10 @@ function loadFromKV() {
 }
 
 loadFromKV();
+// Safety net: re-render after 1.5s in case KV beat the image load
+setTimeout(function() {
+  if (Object.keys(FINAL_MAP).length > 0) buildSpots();
+}, 1500);
 
 // ── Add late submission ───────────────────────────────────────────────────────
 function toggleAddCamper() {
