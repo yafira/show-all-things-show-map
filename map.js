@@ -1,36 +1,27 @@
-var IMG_W = 2400,
-  IMG_H = 1248;
+var IMG_W = 2400, IMG_H = 1248;
 var currentScale = 1;
 var mapContainer = document.getElementById("mapContainer");
-var mapInner = document.getElementById("mapInner");
-var spotsLayer = document.getElementById("spots-layer");
+var mapInner     = document.getElementById("mapInner");
+var spotsLayer   = document.getElementById("spots-layer");
 
 // ── Pan (mouse) ───────────────────────────────────────────────────────────────
-var isPanning = false,
-  panSX,
-  panSY,
-  panSL,
-  panST;
+var isPanning = false, panSX, panSY, panSL, panST;
 
-mapContainer.addEventListener("mousedown", function (e) {
+mapContainer.addEventListener("mousedown", function(e) {
   isPanning = true;
   panSX = e.pageX - mapContainer.offsetLeft;
   panSY = e.pageY - mapContainer.offsetTop;
   panSL = mapContainer.scrollLeft;
   panST = mapContainer.scrollTop;
 });
-mapContainer.addEventListener("mousemove", function (e) {
+mapContainer.addEventListener("mousemove", function(e) {
   if (!isPanning) return;
   e.preventDefault();
   mapContainer.scrollLeft = panSL - (e.pageX - mapContainer.offsetLeft - panSX);
-  mapContainer.scrollTop = panST - (e.pageY - mapContainer.offsetTop - panSY);
+  mapContainer.scrollTop  = panST - (e.pageY - mapContainer.offsetTop  - panSY);
 });
-mapContainer.addEventListener("mouseup", function () {
-  isPanning = false;
-});
-mapContainer.addEventListener("mouseleave", function () {
-  isPanning = false;
-});
+mapContainer.addEventListener("mouseup",    function() { isPanning = false; });
+mapContainer.addEventListener("mouseleave", function() { isPanning = false; });
 
 // ── Touch: pan + pinch-to-zoom ────────────────────────────────────────────────
 var lastTouchDist = null;
@@ -42,52 +33,40 @@ function getTouchDist(e) {
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-mapContainer.addEventListener(
-  "touchstart",
-  function (e) {
-    if (e.touches.length === 2) {
-      lastTouchDist = getTouchDist(e);
-    } else if (e.touches.length === 1) {
-      lastTouchDist = null;
-      touchStartX = e.touches[0].pageX - mapContainer.offsetLeft;
-      touchStartY = e.touches[0].pageY - mapContainer.offsetTop;
-      touchScrollL = mapContainer.scrollLeft;
-      touchScrollT = mapContainer.scrollTop;
-    }
-  },
-  { passive: true },
-);
-
-mapContainer.addEventListener(
-  "touchmove",
-  function (e) {
-    if (e.touches.length === 2) {
-      // Pinch zoom
-      var dist = getTouchDist(e);
-      if (lastTouchDist) {
-        var factor = dist / lastTouchDist;
-        currentScale = Math.min(Math.max(currentScale * factor, 0.3), 6);
-        mapInner.style.transform = "scale(" + currentScale + ")";
-      }
-      lastTouchDist = dist;
-    } else if (e.touches.length === 1 && lastTouchDist === null) {
-      // Single-finger pan
-      var x = e.touches[0].pageX - mapContainer.offsetLeft;
-      var y = e.touches[0].pageY - mapContainer.offsetTop;
-      mapContainer.scrollLeft = touchScrollL - (x - touchStartX);
-      mapContainer.scrollTop = touchScrollT - (y - touchStartY);
-    }
-  },
-  { passive: true },
-);
-
-mapContainer.addEventListener(
-  "touchend",
-  function () {
+mapContainer.addEventListener("touchstart", function(e) {
+  if (e.touches.length === 2) {
+    lastTouchDist = getTouchDist(e);
+  } else if (e.touches.length === 1) {
     lastTouchDist = null;
-  },
-  { passive: true },
-);
+    touchStartX = e.touches[0].pageX - mapContainer.offsetLeft;
+    touchStartY = e.touches[0].pageY - mapContainer.offsetTop;
+    touchScrollL = mapContainer.scrollLeft;
+    touchScrollT = mapContainer.scrollTop;
+  }
+}, { passive: true });
+
+mapContainer.addEventListener("touchmove", function(e) {
+  if (e.touches.length === 2) {
+    // Pinch zoom
+    var dist = getTouchDist(e);
+    if (lastTouchDist) {
+      var factor = dist / lastTouchDist;
+      currentScale = Math.min(Math.max(currentScale * factor, 0.3), 6);
+      mapInner.style.transform = "scale(" + currentScale + ")";
+    }
+    lastTouchDist = dist;
+  } else if (e.touches.length === 1 && lastTouchDist === null) {
+    // Single-finger pan
+    var x = e.touches[0].pageX - mapContainer.offsetLeft;
+    var y = e.touches[0].pageY - mapContainer.offsetTop;
+    mapContainer.scrollLeft = touchScrollL - (x - touchStartX);
+    mapContainer.scrollTop  = touchScrollT - (y - touchStartY);
+  }
+}, { passive: true });
+
+mapContainer.addEventListener("touchend", function() {
+  lastTouchDist = null;
+}, { passive: true });
 
 // ── Spots ─────────────────────────────────────────────────────────────────────
 function imgDims() {
@@ -97,15 +76,13 @@ function imgDims() {
 
 function buildSpots() {
   spotsLayer.innerHTML = "";
-  var d = imgDims(),
-    sx = d.w / IMG_W,
-    sy = d.h / IMG_H;
-  window.SPOTS.forEach(function (s) {
+  var d = imgDims(), sx = d.w / IMG_W, sy = d.h / IMG_H;
+  window.SPOTS.forEach(function(s) {
     var el = document.createElement("div");
     el.className = "spot";
     el.id = "spot-" + s.id;
     el.style.left = Math.round(s.x * sx) + "px";
-    el.style.top = Math.round(s.y * sy) + "px";
+    el.style.top  = Math.round(s.y * sy) + "px";
     spotsLayer.appendChild(el);
   });
 }
@@ -113,16 +90,14 @@ function buildSpots() {
 // ── Search ────────────────────────────────────────────────────────────────────
 function doSearch(q) {
   q = q.toLowerCase().trim();
-  var banner = document.getElementById("resultBanner");
-  var hint = document.getElementById("hint");
+  var banner   = document.getElementById("resultBanner");
+  var hint     = document.getElementById("hint");
   var clearBtn = document.getElementById("clearBtn");
 
   clearBtn.classList.toggle("show", q.length > 0);
 
   if (!q) {
-    document.querySelectorAll(".spot").forEach(function (el) {
-      el.className = "spot";
-    });
+    document.querySelectorAll(".spot").forEach(function(el) { el.className = "spot"; });
     banner.className = "result-banner";
     banner.innerHTML = "";
     hint.style.display = "block";
@@ -134,37 +109,28 @@ function doSearch(q) {
   var matchedSpotIds = {};
   var matchedEntries = [];
 
-  Object.keys(window.FINAL_MAP).forEach(function (spotId) {
+  Object.keys(window.FINAL_MAP).forEach(function(spotId) {
     var data = window.FINAL_MAP[spotId];
-    data.entries.forEach(function (e, idx) {
-      if (
-        e.name.toLowerCase().includes(q) ||
-        e.project.toLowerCase().includes(q)
-      ) {
+    data.entries.forEach(function(e, idx) {
+      if (e.name.toLowerCase().includes(q) || e.project.toLowerCase().includes(q)) {
         matchedSpotIds[spotId] = true;
-        var subLabel =
-          data.entries.length > 1 ? spotId + "." + (idx + 1) : spotId;
-        var key = e.name + "|||" + e.project;
-        if (
-          !matchedEntries.find(function (x) {
-            return x.key === key;
-          })
-        ) {
-          matchedEntries.push({
+        var subLabel = data.entries.length > 1 ? spotId + "." + (idx + 1) : spotId;
+        var key = e.name + "|||" + e.project + "|||" + spotId;
+        matchedEntries.push({
             key: key,
             name: e.name,
             project: e.project,
             zone: data.zone,
             spotId: parseInt(spotId),
             label: subLabel,
-            totalInSpot: data.entries.length,
+            totalInSpot: data.entries.length
           });
         }
       }
     });
   });
 
-  document.querySelectorAll(".spot").forEach(function (el) {
+  document.querySelectorAll(".spot").forEach(function(el) {
     var id = el.id.replace("spot-", "");
     el.className = matchedSpotIds[id] ? "spot active" : "spot";
   });
@@ -175,41 +141,32 @@ function doSearch(q) {
     // Check Others list from localStorage
     var others = [];
     others = window._OTHERS || window.OTHERS_LIST || [];
-    var otherMatch = others.filter(function (o) {
+    var otherMatch = others.filter(function(o) {
       return o.name.toLowerCase().includes(q);
     });
 
     banner.className = "result-banner show";
     if (otherMatch.length > 0) {
-      otherMatch.forEach(function (o) {
+      otherMatch.forEach(function(o) {
         var card = document.createElement("div");
         card.className = "result-card";
-        var nameEl = document.createElement("div");
-        nameEl.className = "result-name";
-        nameEl.textContent = o.name;
-        var noteEl = document.createElement("div");
-        noteEl.className = "result-project";
-        noteEl.textContent = o.note || "";
-        var locEl = document.createElement("div");
-        locEl.className = "result-location";
-        locEl.textContent = "Special arrangement — see staff";
-        card.appendChild(nameEl);
-        card.appendChild(noteEl);
-        card.appendChild(locEl);
+        var nameEl = document.createElement("div"); nameEl.className = "result-name"; nameEl.textContent = o.name;
+        var noteEl = document.createElement("div"); noteEl.className = "result-project"; noteEl.textContent = o.note || "";
+        var locEl = document.createElement("div"); locEl.className = "result-location"; locEl.textContent = "Special arrangement — see staff";
+        card.appendChild(nameEl); card.appendChild(noteEl); card.appendChild(locEl);
         banner.appendChild(card);
       });
     } else {
       var msg = document.createElement("div");
       msg.className = "result-no";
-      msg.textContent =
-        'No match for "' + q + '" — try a different spelling or see staff.';
+      msg.textContent = "No match for \"" + q + "\" — try a different spelling or see staff.";
       banner.appendChild(msg);
     }
     return;
   }
 
   banner.className = "result-banner show";
-  matchedEntries.forEach(function (e) {
+  matchedEntries.forEach(function(e) {
     var card = document.createElement("div");
     card.className = "result-card";
 
@@ -234,17 +191,15 @@ function doSearch(q) {
 
   // Scroll map to first matched spot
   var firstId = Object.keys(matchedSpotIds)[0];
-  var spot = window.SPOTS.find(function (s) {
-    return s.id === parseInt(firstId);
-  });
+  var spot = window.SPOTS.find(function(s) { return s.id === parseInt(firstId); });
   if (spot) {
     var d = imgDims();
     var px = spot.x * (d.w / IMG_W) * currentScale;
     var py = spot.y * (d.h / IMG_H) * currentScale;
     mapContainer.scrollTo({
       left: px - mapContainer.clientWidth / 2,
-      top: py - mapContainer.clientHeight / 2,
-      behavior: "smooth",
+      top:  py - mapContainer.clientHeight / 2,
+      behavior: "smooth"
     });
   }
 }
@@ -255,7 +210,7 @@ function clearSearch() {
   document.getElementById("search").focus();
 }
 
-document.getElementById("search").addEventListener("input", function () {
+document.getElementById("search").addEventListener("input", function() {
   doSearch(this.value);
 });
 
@@ -272,29 +227,29 @@ function resetZoom() {
 // ── Init ──────────────────────────────────────────────────────────────────────
 var mapImgLoaded = false;
 var kvDataLoaded = false;
-var kvFinalMap = null;
-var kvOthers = null;
+var kvFinalMap   = null;
+var kvOthers     = null;
 
 function tryInit() {
   if (!mapImgLoaded || !kvDataLoaded) return;
   // Apply KV data if available, else fall back to localStorage
   if (kvFinalMap && Object.keys(kvFinalMap).length > 0) {
     window.FINAL_MAP = kvFinalMap;
+    try { localStorage.setItem("sats_final_map", JSON.stringify(kvFinalMap)); } catch(e) {}
   } else {
     try {
       var s = localStorage.getItem("sats_final_map");
       if (s) window.FINAL_MAP = JSON.parse(s);
-    } catch (e) {}
+    } catch(e) {}
   }
   if (kvOthers && kvOthers.length > 0) {
     window._OTHERS = kvOthers;
+    try { localStorage.setItem("sats_others", JSON.stringify(kvOthers)); } catch(e) {}
   } else {
     try {
       var s2 = localStorage.getItem("sats_others");
-      window._OTHERS = s2 ? JSON.parse(s2) : window.OTHERS_LIST || [];
-    } catch (e) {
-      window._OTHERS = window.OTHERS_LIST || [];
-    }
+      window._OTHERS = s2 ? JSON.parse(s2) : (window.OTHERS_LIST || []);
+    } catch(e) { window._OTHERS = window.OTHERS_LIST || []; }
   }
   buildSpots();
   if (window.innerWidth < 600) {
@@ -305,21 +260,19 @@ function tryInit() {
 
 // Load from KV
 fetch("/api/get-data")
-  .then(function (r) {
-    return r.json();
-  })
-  .then(function (data) {
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
     kvFinalMap = data.finalMap;
-    kvOthers = data.others;
+    kvOthers   = data.others;
     kvDataLoaded = true;
     tryInit();
   })
-  .catch(function () {
+  .catch(function() {
     kvDataLoaded = true;
     tryInit();
   });
 
-document.getElementById("mapImg").addEventListener("load", function () {
+document.getElementById("mapImg").addEventListener("load", function() {
   mapImgLoaded = true;
   tryInit();
 });
