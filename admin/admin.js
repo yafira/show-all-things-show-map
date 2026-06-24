@@ -1251,6 +1251,11 @@ var ZONE_MAP = {
   83: "Phone Booth",
 };
 
+// ── Persist to localStorage ──────────────────────────────────────────────────
+function saveMapToStorage() {
+  saveMapToStorage();
+}
+
 // ── Spot status helpers ───────────────────────────────────────────────────────
 function getSpotStatus(id) {
   var data = FINAL_MAP[String(id)];
@@ -1388,6 +1393,15 @@ function hideTooltip() {
 }
 
 // ── Sidebar ───────────────────────────────────────────────────────────────────
+function deleteEntry(spotId, entryIndex) {
+  var key = String(spotId);
+  if (!FINAL_MAP[key]) return;
+  FINAL_MAP[key].entries.splice(entryIndex, 1);
+  if (FINAL_MAP[key].entries.length === 0) delete FINAL_MAP[key];
+  saveMapToStorage();
+  buildSpots();
+}
+
 function setFilter(f, btn) {
   activeFilter = f;
   document.querySelectorAll(".filter-btn").forEach(function (b) {
@@ -1497,6 +1511,20 @@ function renderSidebar() {
             openSwapModal(capturedId, idx);
           });
           row.appendChild(swapBtn);
+
+          var delBtn = document.createElement("button");
+          delBtn.className = "si-del-btn";
+          delBtn.textContent = "×";
+          delBtn.title = "Remove " + entry.name;
+          delBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (
+              confirm("Remove " + entry.name + " from spot " + capturedId + "?")
+            ) {
+              deleteEntry(capturedId, idx);
+            }
+          });
+          row.appendChild(delBtn);
         });
       })(item.id, item.data);
     }
@@ -1651,6 +1679,7 @@ function applyImport() {
     "Imported! " + Object.keys(FINAL_MAP).length + " spots assigned.";
   document.getElementById("colMap").classList.remove("show");
   buildSpots();
+  saveMapToStorage();
 }
 
 // ── Export CSV ────────────────────────────────────────────────────────────────
@@ -1783,6 +1812,7 @@ function confirmSwap() {
 
   closeSwapModal();
   buildSpots();
+  saveMapToStorage();
 }
 
 // Close on backdrop click
@@ -1890,72 +1920,40 @@ function toggleAddCamper() {
 function submitNewCamper() {
   var name = document.getElementById("newName").value.trim();
   var project = document.getElementById("newProject").value.trim();
-  var spotRaw = document.getElementById("newSpot").value.trim();
   var msg = document.getElementById("addCamperMsg");
-  var spotId = parseInt(spotRaw);
 
   msg.style.display = "block";
-
   if (!name) {
     msg.style.color = "var(--red)";
     msg.textContent = "Name is required.";
     return;
   }
-  if (!spotId || spotId < 1 || spotId > 131) {
-    msg.style.color = "var(--red)";
-    msg.textContent = "Enter a valid spot number (1–131).";
-    return;
-  }
 
-  var key = String(spotId);
-  if (!FINAL_MAP[key]) {
-    FINAL_MAP[key] = {
-      entries: [],
-      zone: ZONE_MAP[spotId] || "Other",
-      label: key,
-    };
-  }
+  OTHERS.push({ name: name, note: project || "Late submission" });
+  saveOthersToStorage();
+  renderOthers();
 
-  // Check for duplicate
-  var already = FINAL_MAP[key].entries.find(function (e) {
-    return e.name.toLowerCase() === name.toLowerCase();
-  });
-  if (already) {
-    msg.style.color = "var(--yellow)";
-    msg.textContent = name + " is already at spot " + spotId + ".";
-    return;
-  }
-
-  FINAL_MAP[key].entries.push({
-    name: name,
-    project: project,
-    space_raw: spotRaw,
-  });
-
-  // Clear form
   document.getElementById("newName").value = "";
   document.getElementById("newProject").value = "";
-  document.getElementById("newSpot").value = "";
 
-  var zone = ZONE_MAP[spotId] || "Other";
+  // Save updated FINAL_MAP to localStorage so public page reflects it
+  saveMapToStorage();
+
   msg.style.color = "var(--green)";
-  msg.textContent =
-    name + " added to spot " + spotId + " \u00b7 " + zone + " \u2713";
-
-  buildSpots();
-
-  // Auto-hide message after 3s
+  msg.textContent = name + " added ✓";
   setTimeout(function () {
     msg.style.display = "none";
-  }, 3000);
+    toggleAddCamper();
+  }, 2000);
 }
 
 // Allow Enter key to submit
-["newName", "newProject", "newSpot"].forEach(function (id) {
-  document.getElementById(id) &&
-    document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById(id).addEventListener("keydown", function (e) {
+["newName", "newProject"].forEach(function (id) {
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById(id);
+    if (el)
+      el.addEventListener("keydown", function (e) {
         if (e.key === "Enter") submitNewCamper();
       });
-    });
+  });
 });

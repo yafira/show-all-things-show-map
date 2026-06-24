@@ -177,7 +177,15 @@ function doSearch(q) {
     var defaultOthers = window.OTHERS_LIST || [];
     try {
       var stored = localStorage.getItem("sats_others");
-      others = stored ? JSON.parse(stored) : defaultOthers;
+      var storedList = stored ? JSON.parse(stored) : [];
+      // Merge: stored entries + any defaults not already in stored
+      var mergedNames = storedList.map(function (o) {
+        return o.name.toLowerCase();
+      });
+      var extras = defaultOthers.filter(function (o) {
+        return mergedNames.indexOf(o.name.toLowerCase()) === -1;
+      });
+      others = storedList.concat(extras);
     } catch (e) {
       others = defaultOthers;
     }
@@ -276,6 +284,12 @@ function resetZoom() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+// Load any admin changes from localStorage
+try {
+  var storedMap = localStorage.getItem("sats_final_map");
+  if (storedMap) window.FINAL_MAP = JSON.parse(storedMap);
+} catch (e) {}
+
 document.getElementById("mapImg").addEventListener("load", function () {
   buildSpots();
   // On mobile, start zoomed out a bit so the map is visible
