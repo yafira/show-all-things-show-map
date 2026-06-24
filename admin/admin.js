@@ -9,6 +9,7 @@ var isPanning = false,
   panST;
 var importedHeaders = [],
   importedRows = [];
+var OTHERS = [];
 
 // Data — loaded from index.html's baked-in data, can be overridden by CSV import
 var FINAL_MAP = {
@@ -1895,7 +1896,6 @@ document.getElementById("swapModal").addEventListener("click", function (e) {
 });
 
 // ── Others / Unassigned ───────────────────────────────────────────────────────
-var OTHERS = []; // [{name, note}]
 
 function showAddOther() {
   document.getElementById("addOtherForm").style.display = "block";
