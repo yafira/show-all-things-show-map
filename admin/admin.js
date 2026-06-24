@@ -1887,6 +1887,13 @@ function saveOthersToStorage() {
   try {
     localStorage.setItem("sats_others", JSON.stringify(OTHERS));
   } catch (e) {}
+  fetch("/api/save-data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ others: OTHERS }),
+  }).catch(function (e) {
+    console.warn("KV save failed:", e);
+  });
 }
 function loadOthersFromStorage() {
   try {
@@ -1896,8 +1903,35 @@ function loadOthersFromStorage() {
   renderOthers();
 }
 
-// Init others on load
-loadOthersFromStorage();
+// Init — load from KV first, fall back to localStorage
+function loadFromKV() {
+  fetch("/api/get-data")
+    .then(function (r) {
+      return r.json();
+    })
+    .then(function (data) {
+      if (data.finalMap && Object.keys(data.finalMap).length > 0) {
+        FINAL_MAP = data.finalMap;
+        try {
+          localStorage.setItem("sats_final_map", JSON.stringify(FINAL_MAP));
+        } catch (e) {}
+        buildSpots();
+      }
+      if (data.others && data.others.length > 0) {
+        OTHERS = data.others;
+        try {
+          localStorage.setItem("sats_others", JSON.stringify(OTHERS));
+        } catch (e) {}
+        renderOthers();
+      }
+    })
+    .catch(function () {
+      // KV unavailable — fall back to localStorage
+      loadOthersFromStorage();
+    });
+}
+
+loadFromKV();
 
 // Pre-load known special requests
 if (OTHERS.length === 0) {

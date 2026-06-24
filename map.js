@@ -174,21 +174,7 @@ function doSearch(q) {
   if (matchedEntries.length === 0) {
     // Check Others list from localStorage
     var others = [];
-    var defaultOthers = window.OTHERS_LIST || [];
-    try {
-      var stored = localStorage.getItem("sats_others");
-      var storedList = stored ? JSON.parse(stored) : [];
-      // Merge: stored entries + any defaults not already in stored
-      var mergedNames = storedList.map(function (o) {
-        return o.name.toLowerCase();
-      });
-      var extras = defaultOthers.filter(function (o) {
-        return mergedNames.indexOf(o.name.toLowerCase()) === -1;
-      });
-      others = storedList.concat(extras);
-    } catch (e) {
-      others = defaultOthers;
-    }
+    others = window._OTHERS || window.OTHERS_LIST || [];
     var otherMatch = others.filter(function (o) {
       return o.name.toLowerCase().includes(q);
     });
@@ -284,18 +270,57 @@ function resetZoom() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-// Load any admin changes from localStorage
-try {
-  var storedMap = localStorage.getItem("sats_final_map");
-  if (storedMap) window.FINAL_MAP = JSON.parse(storedMap);
-} catch (e) {}
+var mapImgLoaded = false;
+var kvDataLoaded = false;
+var kvFinalMap = null;
+var kvOthers = null;
 
-document.getElementById("mapImg").addEventListener("load", function () {
+function tryInit() {
+  if (!mapImgLoaded || !kvDataLoaded) return;
+  // Apply KV data if available, else fall back to localStorage
+  if (kvFinalMap && Object.keys(kvFinalMap).length > 0) {
+    window.FINAL_MAP = kvFinalMap;
+  } else {
+    try {
+      var s = localStorage.getItem("sats_final_map");
+      if (s) window.FINAL_MAP = JSON.parse(s);
+    } catch (e) {}
+  }
+  if (kvOthers && kvOthers.length > 0) {
+    window._OTHERS = kvOthers;
+  } else {
+    try {
+      var s2 = localStorage.getItem("sats_others");
+      window._OTHERS = s2 ? JSON.parse(s2) : window.OTHERS_LIST || [];
+    } catch (e) {
+      window._OTHERS = window.OTHERS_LIST || [];
+    }
+  }
   buildSpots();
-  // On mobile, start zoomed out a bit so the map is visible
   if (window.innerWidth < 600) {
     currentScale = 0.45;
     mapInner.style.transform = "scale(" + currentScale + ")";
   }
+}
+
+// Load from KV
+fetch("/api/get-data")
+  .then(function (r) {
+    return r.json();
+  })
+  .then(function (data) {
+    kvFinalMap = data.finalMap;
+    kvOthers = data.others;
+    kvDataLoaded = true;
+    tryInit();
+  })
+  .catch(function () {
+    kvDataLoaded = true;
+    tryInit();
+  });
+
+document.getElementById("mapImg").addEventListener("load", function () {
+  mapImgLoaded = true;
+  tryInit();
 });
 document.getElementById("mapImg").src = window.MAP_IMG_SRC;
