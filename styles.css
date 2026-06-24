@@ -299,3 +299,10 @@ header {
     font-size: 24px;
   }
 }
+
+/* Force all non-active spots completely invisible */
+.spot:not(.active) {
+  background: transparent !important;
+  border-color: transparent !important;
+  opacity: 0 !important;
+}
