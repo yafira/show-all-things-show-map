@@ -1,5 +1,7 @@
 var IMG_W = 2400,
   IMG_H = 1248;
+// Initialize _OTHERS immediately so search works before KV loads
+window._OTHERS = window.OTHERS_LIST || [];
 var currentScale = 1;
 var mapContainer = document.getElementById("mapContainer");
 var mapInner = document.getElementById("mapInner");
