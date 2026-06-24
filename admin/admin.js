@@ -1989,11 +1989,6 @@ function submitNewCamper() {
     var already = FINAL_MAP[key].entries.find(function (e) {
       return e.name.toLowerCase() === name.toLowerCase();
     });
-    if (already) {
-      msg.style.color = "var(--yellow)";
-      msg.textContent = name + " is already at spot " + spotId + ".";
-      return;
-    }
     FINAL_MAP[key].entries.push({
       name: name,
       project: project,
