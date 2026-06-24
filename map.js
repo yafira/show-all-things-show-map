@@ -286,7 +286,12 @@ function tryInit() {
     } catch (e) {}
   }
   if (kvOthers && kvOthers.length > 0) {
-    window._OTHERS = kvOthers;
+    // Merge KV others with OTHERS_LIST, dedup by name
+    var merged = kvOthers.slice();
+    (window.OTHERS_LIST || []).forEach(function(o) {
+      if (!merged.find(function(m) { return m.name === o.name; })) merged.push(o);
+    });
+    window._OTHERS = merged;
     try {
       localStorage.setItem("sats_others", JSON.stringify(kvOthers));
     } catch (e) {}
